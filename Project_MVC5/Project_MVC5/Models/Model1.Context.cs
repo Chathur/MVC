@@ -32,5 +32,6 @@ namespace Project_MVC5.Models
         public virtual DbSet<tb_Supplier> tb_Supplier { get; set; }
         public virtual DbSet<tb_SalesOrder> tb_SalesOrder { get; set; }
         public virtual DbSet<tb_Sales> tb_Sales { get; set; }
+        public virtual DbSet<tb_Customer> tb_Customer { get; set; }
     }
 }

@@ -179,13 +179,17 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\MvcSearchController.cs" />
+    <Compile Include="Controllers\Sales_CustomerController.cs" />
     <Compile Include="Controllers\Sales_DirectSalesController.cs" />
     <Compile Include="Controllers\PurchaseGRNController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\Sales_SalesController.cs" />
+    <Compile Include="Controllers\Sales_SalesListController.cs" />
     <Compile Include="Controllers\Sales_SalesOrderController.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
+    <Compile Include="Controllers\tb_SalesController.cs" />
+    <Compile Include="Controllers\Test_SalesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -208,6 +212,9 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\tb_Cart.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tb_Customer.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tb_order.cs">
@@ -328,6 +335,11 @@
     <Content Include="Views\Sales_SalesOrder\SalesOrder.cshtml" />
     <Content Include="Views\MvcSearch\Index.cshtml" />
     <Content Include="Views\Sales_Sales\Sales.cshtml" />
+    <Content Include="Views\Sales_Sales\Salesnew.cshtml" />
+    <Content Include="Views\Sales_Sales\Edit.cshtml" />
+    <Content Include="Views\Test_Sales\Index.cshtml" />
+    <Content Include="Views\Sales_SalesList\SalesList.cshtml" />
+    <Content Include="Views\Sales_Customer\Sales_Customer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
