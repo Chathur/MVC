@@ -13,62 +13,79 @@ namespace Project_MVC5.Controllers
 
         // GET: Sales_Sales
         Demo_onlineEntities db = new Demo_onlineEntities();
-        int bill_no=1;
+       
+        int page_index = 1;
 
         public ActionResult Index()
         {
             return View();
         }
-        public ActionResult Sales(tb_SalesOrder pr)
-        {
-            var result = from p in db.tb_SalesOrder select p;
-            result = result.Where(p => p.Bill_No == pr.Bill_No);
-            return View(result);
-
-        }
-      /*  public ActionResult Salesnew()
-        {
-
-            return View(db.tb_SalesOrder.Where(p => p.Bill_No == bill_no).OrderByDescending(p => p.ID_Product).ToList());
-
-        }
-        */
-
-
-        public ActionResult AddorEdit( tb_SalesOrder pr)
+        public ActionResult Sales(tb_SalesOrder model)
         {
             
-            
-            // Add new
-            if (pr.ID_Product == 0)
+            if (!string.IsNullOrEmpty(model.SearchButton) || model.Page.HasValue)
             {
-                tb_SalesOrder pro = new tb_SalesOrder();
-                pro.Name_Product = pr.Name_Product;
-                pro.Price = (double)pr.Price;
-                pro.Quantity = pr.Quantity;
-                pro.Bill_No = pr.Bill_No;
-                // pro.Code_Product = pr.Code_Product;
-                pro.Customer = pr.Customer;
-                pro.Date = pr.Date;
-                pro.Employee = pr.Employee;
-                db.tb_SalesOrder.Add(pro);
-            }
-            else
-            {
-                var update = db.tb_SalesOrder.Find(pr.ID_Product);
+                int RecordsPerPage = 500;
+                
+                var results = db.tb_SalesOrder
+                    .Where(p => (p.Bill_No.Equals(model.Bill_No)
+                                ))
+                     .OrderBy(p => p.ID_Product);
 
-                update.Name_Product = pr.Name_Product;
-                update.Price = (double)pr.Price;
-                update.Quantity = pr.Quantity;
-                update.Bill_No = pr.Bill_No;
-                // pro.Code_Product = pr.Code_Product;
-                update.Customer = pr.Customer;
-                update.Date = pr.Date;
-                update.Employee = pr.Employee;
-            }
-            db.SaveChanges();
+                var pageIndex = model.Page ?? 1;
+               
 
-            return RedirectToAction("Sales", "Sales_Sales");
+                model.SearchResults = results.ToPagedList(pageIndex, RecordsPerPage);
+            }
+            return View(model);
+
+        }
+       public ActionResult Salesnew(int id)
+        {
+            tb_SalesOrder pro = new tb_SalesOrder();
+            var results = db.tb_SalesOrder.Where(p => p.Bill_No == id).OrderBy(p => p.ID_Product);
+            pro.SearchResults = results.ToPagedList(page_index, 500);
+            return View(pro);
+
+        }
+        
+
+
+        public ActionResult AddorEdit(int id, tb_SalesOrder pr)
+        {
+
+                // Add new
+                if (pr.ID_Product == 0)
+                {
+                    tb_SalesOrder pro = new tb_SalesOrder();
+                    pro.Name_Product = pr.Name_Product;
+                    pro.Price = (double)pr.Price;
+                    pro.Quantity = pr.Quantity;
+                    pro.Bill_No = pr.Bill_No;
+                    // pro.Code_Product = pr.Code_Product;
+                    pro.Customer = pr.Customer;
+                    pro.Date = pr.Date;
+                    pro.Employee = pr.Employee;
+                    db.tb_SalesOrder.Add(pro);
+                }
+                else
+                {
+                    var update = db.tb_SalesOrder.Find(pr.ID_Product);
+
+                    update.Name_Product = pr.Name_Product;
+                    update.Price = (double)pr.Price;
+                    update.Quantity = pr.Quantity;
+                    update.Bill_No = pr.Bill_No;
+                    // pro.Code_Product = pr.Code_Product;
+                    update.Customer = pr.Customer;
+                    update.Date = pr.Date;
+                    update.Employee = pr.Employee;
+                }
+                db.SaveChanges();
+
+               
+
+                return RedirectToAction("Salesnew","Sales_Sales", new { id = id });
         }
 
         public ActionResult Delete(int id)
@@ -77,7 +94,7 @@ namespace Project_MVC5.Controllers
             db.tb_SalesOrder.Remove(delete);
             db.SaveChanges();
 
-            return RedirectToAction("Sales", "Sales_Sales");
+            return RedirectToAction("Salesnew", "Sales_Sales");
         }
 
         public ActionResult Add(int id)
@@ -85,7 +102,7 @@ namespace Project_MVC5.Controllers
             tb_Sales pro = new tb_Sales();
             List<tb_SalesOrder> list = new List<tb_SalesOrder>();
             list = db.tb_SalesOrder.ToList();
-            List<tb_SalesOrder>.Enumerator e  = list.GetEnumerator();
+            
 
             
             foreach (var items in list)

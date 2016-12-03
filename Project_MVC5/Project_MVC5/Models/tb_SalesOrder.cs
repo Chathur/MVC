@@ -11,9 +11,12 @@ namespace Project_MVC5.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using PagedList;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class tb_SalesOrder
     {
+        public int? Page { get; set; }
         public int ID_Product { get; set; }
         public string Code_Product { get; set; }
         public string Name_Product { get; set; }
@@ -22,8 +25,10 @@ namespace Project_MVC5.Models
         public Nullable<double> Total { get; set; }
         public System.DateTime Date { get; set; }
         public string Employee { get; set; }
-        public int Bill_No { get; set; }
+        public int  Bill_No { get; set; }
         public string Customer { get; set; }
         public Nullable<int> Hide_Bill { get; set; }
+        public IPagedList<tb_SalesOrder> SearchResults { get; set; }
+        public string SearchButton { get; set; }
     }
 }
