@@ -66,5 +66,13 @@ namespace Project_MVC5.Controllers
             db.SaveChanges();
             return RedirectToAction("ShowCart", "Sales_DirectSales");
         }
+
+        public ActionResult Clear()
+        {
+            db.Database.ExecuteSqlCommand("TRUNCATE TABLE [tb_Cart]");
+            
+            db.SaveChanges();
+            return RedirectToAction("ShowCart", "Sales_DirectSales");
+        }
     }
 }
