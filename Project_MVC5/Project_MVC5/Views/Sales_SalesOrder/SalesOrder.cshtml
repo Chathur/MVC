@@ -133,6 +133,7 @@
 
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/bootstrap-datepicker.js"></script>
 <script>
     function showedit(objects)
     {
@@ -146,6 +147,10 @@
         $("#Employee").val(_this.attr("data-emp"));
         $("#Customer").val(_this.attr("data-cus"));
     }
+    //Date picker
+    $('#Date').datepicker({
+        autoclose: true
+    });
 
 
 </script>

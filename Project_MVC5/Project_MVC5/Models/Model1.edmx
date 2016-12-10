@@ -88,7 +88,6 @@
           <Property Name="Employee" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Bill_No" Type="int" Nullable="false" />
           <Property Name="Customer" Type="nvarchar" MaxLength="50" />
-          <Property Name="Hide_Bill" Type="int" />
         </EntityType>
         <EntityType Name="tb_Supplier">
           <Key>
@@ -192,7 +191,6 @@
           <Property Name="Employee" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Bill_No" Type="Int32" Nullable="false" />
           <Property Name="Customer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Hide_Bill" Type="Int32" />
         </EntityType>
         <EntityType Name="tb_Sales">
           <Key>
@@ -287,7 +285,6 @@
           <EntitySetMapping Name="tb_SalesOrder">
             <EntityTypeMapping TypeName="Demo_onlineModel.tb_SalesOrder">
               <MappingFragment StoreEntitySet="tb_SalesOrder">
-                <ScalarProperty Name="Hide_Bill" ColumnName="Hide_Bill" />
                 <ScalarProperty Name="Customer" ColumnName="Customer" />
                 <ScalarProperty Name="Bill_No" ColumnName="Bill_No" />
                 <ScalarProperty Name="Employee" ColumnName="Employee" />

@@ -15,7 +15,7 @@
 
     if (Model.SearchResults != null)
     {
-        
+
         var list = Model.SearchResults;
         foreach (var item in Model.SearchResults)
         {
@@ -31,8 +31,7 @@
 
 
 }
-
-
+<link href="~/Content/datepicker3.css" rel="stylesheet" />
 
 
 <form class="form-horizontal" action="/Sales_Sales/Sales/" method="post">
@@ -54,7 +53,7 @@
 
         <form class="form-horizontal" action="/Sales_Sales/AddorEdit/@Bill_No" method="post">
 
-            <div class="form-horizontal form-control-static">
+            <div class="form-horizontal form-control-static ">
 
 
                 <div class="form-group-sm form-inline form-control-static">
@@ -155,6 +154,8 @@
 
 
         <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+        <script src="~/Scripts/bootstrap-datepicker.js"></script>
+
         <script>
             function showedit(objects) {
                 var _this = $(objects).closest(".main-data");
@@ -164,7 +165,10 @@
                 $("#ID_Product").val(_this.attr("data-id"));
 
             }
-
+            //Date picker
+            $('#Date').datepicker({
+                autoclose: true
+            });
 
         </script>
 

@@ -31,7 +31,13 @@ namespace Project_MVC5.Controllers
                //prox to reduce the quantity from stores
                var prox = db.tb_Product.Where(p => p.Name_Product == ca.Name_Product).First();
                prox.Quantity = (prox.Quantity - ca.Quantity);
+               int ? newValue = prox.Quantity;
                db.Entry(prox).State = EntityState.Modified;
+
+                if (newValue <= 5)
+                {
+                    Email(prox);
+                }
 
                cart.Name_Product = ca.Name_Product;
                cart.Price = ca.Price;
@@ -73,6 +79,27 @@ namespace Project_MVC5.Controllers
             
             db.SaveChanges();
             return RedirectToAction("ShowCart", "Sales_DirectSales");
+        }
+
+        // new Email Sending method
+
+        public void Email(tb_Product prox)
+        {
+
+                string smtpUserName = "creedsadun94@gmail.com";
+                string smtpPassword = ""; //enter Email Password
+                string smtpHost = "smtp.gmail.com";
+                int smtpPort = 25;
+                
+                string emailTo = "thamasha@northshore.edu.lk";
+                string subject = "Stores Notification";
+                string body = "This is an ERP test <br/> "+prox.Name_Product+" sold out";
+
+                Project_MVC5.Models.EmailService newService = new Models.EmailService();
+
+                bool kq = newService.Send(smtpUserName, smtpPassword, smtpHost, smtpPort, emailTo, subject, body);
+
+            
         }
     }
 }
