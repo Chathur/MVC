@@ -1,31 +1,163 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Welcome
+        <small></small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+        <li class="active">Welcome</li>
+    </ol>
+</section>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+<section class="content">
+    
+    <!-- Application buttons -->
+    <div class="row">
+        <div class="col-sm-3 col-lg-9 col-xs-6">
+
+            <div class="box-body">
+
+                <a class="btn btn-app">
+                    <i class="fa fa-list-ul"></i> Categories
+                </a>
+                <a class="btn btn-app">
+                    <i class="fa fa-cubes"></i> Products
+                </a>
+                <a class="btn btn-app">
+                    <i class="fa fa-users"></i> Customers
+                </a>
+                <a class="btn btn-app">
+                    <i class="fa fa-truck"></i> Suppliers
+                </a>
+                <a class="btn btn-app">
+                    <i class="fa  fa-gears"></i> Configuration
+                </a>
+
+            </div>
+            <!-- /.box-body -->
+            <!-- Small boxes (Stat box) -->
+
+            <br /><br />
+            
+            <div class="col-sm-4 col-lg-4 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-green">
+                    <div class="inner">
+                        <h3>Sales</h3>
+                        <p><br /></p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-social-usd"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-sm-4 col-lg-4 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-yellow">
+                    <div class="inner">
+                        <h3>Purchases</h3>
+                        <p><br /></p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-ios-cart"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-sm-4 col-lg-4 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-red">
+                    <div class="inner">
+                        <h3>Stock</h3>
+                        <p><br /></p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-arrow-graph-up-right"></i>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4 col-lg-4 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-green">
+                    <div class="inner">
+                        <h3>Accounts</h3>
+                        <p><br /></p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-folder"></i>
+                    </div>
+
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-sm-4 col-lg-4 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-yellow">
+                    <div class="inner">
+                        <h3>Human <br /> Resources</h3>
+                        
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-android-contacts"></i>
+                    </div>
+
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-sm-4 col-lg-4 col-xs-6">
+                <a href="#">
+                    <!-- small box -->
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <h3>Reports</h3>
+                            <p><br /></p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-ios-paper"></i>
+                        </div>
+
+                    </div>
+                </a>
+            </div>
+
+        </div>
+
+        <div class="col-sm-4 col-lg-3 col-xs-3">
+            <!-- Calendar -->
+            <div class="box box-solid bg-green-gradient">
+                <div class="box-header">
+                    <i class="fa fa-calendar"></i>
+
+                    <h3 class="box-title">Calendar</h3>
+                    <!-- tools box -->
+                    <div class="pull-right box-tools">
+                        <!-- button with a dropdown -->
+
+                        <button type="button" class="btn btn-success btn-sm" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
+
+                    </div>
+                    <!-- /. tools -->
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body no-padding">
+                    <!--The calendar -->
+                    <div id="calendar" style="width: 100%"></div>
+                </div>
+                <!-- /.box-body -->
+
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+    <!-- /.box -->
+</section>
