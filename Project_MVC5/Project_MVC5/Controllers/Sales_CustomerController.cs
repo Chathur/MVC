@@ -34,6 +34,15 @@ namespace Project_MVC5.Controllers
 
             }
 
+            else // edit
+            {
+                var update = db.tb_Customer.Find(cu.ID_Customer);
+                update.Name_Customer = cu.Name_Customer;
+                update.Address_Customer = cu.Address_Customer;
+                update.Store_Customer = cu.Store_Customer;
+                update.Tel_Customer = cu.Tel_Customer;
+
+            }
             db.SaveChanges();
 
             return RedirectToAction("Sales_Customer", "Sales_Customer");

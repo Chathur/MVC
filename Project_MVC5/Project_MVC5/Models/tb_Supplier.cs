@@ -9,9 +9,10 @@
 
 namespace Project_MVC5.Models
 {
+    using PagedList;
     using System;
     using System.Collections.Generic;
-    
+
     public partial class tb_Supplier
     {
         public int ID_Supplier { get; set; }
@@ -19,5 +20,8 @@ namespace Project_MVC5.Models
         public string Store_Supplier { get; set; }
         public string Address_Supplier { get; set; }
         public Nullable<int> Tel_Supplier { get; set; }
+        public IPagedList<tb_Supplier> SearchResults { get; set; }
+        public string SearchButton { get; set; }
+        public int? Page { get; set; }
     }
 }

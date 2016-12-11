@@ -402,6 +402,8 @@
     <Content Include="Views\HR_Customers\Index.cshtml" />
     <Content Include="Views\HR_Supplier\Supplier.cshtml" />
     <Content Include="Views\HR_Employee\Employee.cshtml" />
+    <Content Include="Views\HR_Supplier\SearchSupplier.cshtml" />
+    <Content Include="Views\HR_Supplier\AddSupplier.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
