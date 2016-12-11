@@ -189,6 +189,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CustomerPaymentController.cs" />
     <Compile Include="Controllers\MvcSearchController.cs" />
     <Compile Include="Controllers\Report_SalesDailyController.cs" />
     <Compile Include="Controllers\Report_SalesOrderController.cs" />
@@ -394,6 +395,7 @@
     <Content Include="Views\Test_report\Index.cshtml" />
     <Content Include="Views\Report_SalesOrder\Index.cshtml" />
     <Content Include="Views\SendMail\Index.cshtml" />
+    <Content Include="Views\CustomerPayment\CustomerPayment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
