@@ -12,7 +12,7 @@ namespace Project_MVC5.Controllers
        
     {
         // GET: HR_Supplier
-        Demo_onlineEntities db = new Demo_onlineEntities();
+        WICKRAMA_STORESEntities db = new WICKRAMA_STORESEntities();
         public ActionResult Supplier()
         {
             return View();

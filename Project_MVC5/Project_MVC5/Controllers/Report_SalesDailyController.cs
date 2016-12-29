@@ -14,7 +14,7 @@ namespace Project_MVC5.Controllers {
     public class Report_SalesDailyController : Controller
     {
         // GET: Report_SalesDaily
-        private Demo_onlineEntities db = new Demo_onlineEntities();
+        private WICKRAMA_STORESEntities db = new WICKRAMA_STORESEntities();
         
 
 

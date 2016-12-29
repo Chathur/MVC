@@ -13,24 +13,25 @@ namespace Project_MVC5.Models
     using System;
     using System.Collections.Generic;
 
-    public partial class tb_Supplier
+    public partial class VENDORS
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tb_Supplier()
+        public VENDORS()
         {
+            this.ITEMS = new HashSet<ITEMS>();
             this.Purchases = new HashSet<Purchases>();
         }
     
-        public int ID_Supplier { get; set; }
-        public string Name_Supplier { get; set; }
-        public string Store_Supplier { get; set; }
-        public string Address_Supplier { get; set; }
+        public int VENDOR_ID { get; set; }
+        public string VENDOR_NAME { get; set; }
+        public string ADDRESS_1 { get; set; }
+        public string ADDRESS_2 { get; set; }
         public string ADDRESS_3 { get; set; }
         public string TOWN { get; set; }
         public string COUNTY { get; set; }
         public string POST_CODE { get; set; }
         public string COUNTRY { get; set; }
-        public string Tel_Supplier { get; set; }
+        public string TEL_NO { get; set; }
         public string FAX_NO { get; set; }
         public string CONTACT_NAME { get; set; }
         public string CONTACT_TEL { get; set; }
@@ -43,10 +44,12 @@ namespace Project_MVC5.Models
         public Nullable<decimal> CreditLimit { get; set; }
         public Nullable<int> PaymentTermsId { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ITEMS> ITEMS { get; set; }
         public virtual PaymentTerms PaymentTerms { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Purchases> Purchases { get; set; }
-        public IPagedList<tb_Supplier> SearchResults { get; set; }
+        public IPagedList<VENDORS> SearchResults { get; set; }
         public string SearchButton { get; set; }
         public int? Page { get; set; }
     }

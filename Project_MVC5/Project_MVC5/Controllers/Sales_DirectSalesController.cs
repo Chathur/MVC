@@ -11,7 +11,7 @@ namespace Project_MVC5.Controllers
 {
     public class Sales_DirectSalesController : Controller
     {
-        Demo_onlineEntities db = new Demo_onlineEntities();
+        WICKRAMA_STORESEntities db = new WICKRAMA_STORESEntities();
 
         // GET: Sales_DirectSales
         public ActionResult Index()
@@ -25,34 +25,34 @@ namespace Project_MVC5.Controllers
         public ActionResult AddorEdit(tb_Cart ca)
         {
 
-            if (ca.ID_Product == 0) // Add new
+            if (ca.ITEM_ID == 0) // Add new
             {
                tb_Cart cart = new tb_Cart();
                //prox to reduce the quantity from stores
-               var prox = db.tb_Product.Where(p => p.Name_Product == ca.Name_Product).First();
-               prox.Quantity = (prox.Quantity - ca.Quantity);
-               int ? newValue = prox.Quantity;
+               var prox = db.ITEMS.Where(p => p.Name_Item== ca.Name_Item).First();
+              prox.STOCK_LEVEL = prox.STOCK_LEVEL -(int) ca.QUANTITY;
+               int ? newValue = (int)prox.STOCK_LEVEL;
                db.Entry(prox).State = EntityState.Modified;
 
-                if (newValue <= 5)
+                if (newValue <= prox.MIN_MIN_STOCK_LEVEL) // minimum stock level
                 {
                     Email(prox);
                 }
 
-               cart.Name_Product = ca.Name_Product;
-               cart.Price = ca.Price;
-               cart.Quantity = ca.Quantity;
+               cart.Name_Item = ca.Name_Item;
+               cart.UNIT_PRICE = ca.UNIT_PRICE;
+               cart.QUANTITY = ca.QUANTITY;
 
                db.tb_Cart.Add(cart);
                
             }
             else
             {
-                var update = db.tb_Cart.Find(ca.ID_Product);
+                var update = db.tb_Cart.Find(ca.ITEM_ID);
                 
-                update.Name_Product = ca.Name_Product;
-                update.Price = ca.Price;
-                update.Quantity = ca.Quantity;
+                update.Name_Item = ca.Name_Item;
+                update.UNIT_PRICE = ca.UNIT_PRICE;
+                update.QUANTITY = ca.QUANTITY;
                 update.Total = ca.Total;
             }
 
@@ -62,10 +62,10 @@ namespace Project_MVC5.Controllers
         }
         public ActionResult Delete(int id)
         {
-            var delete = db.tb_Cart.Where(p => p.ID_Product == id).First();
+            var delete = db.tb_Cart.Where(p => p.ITEM_ID == id).First();
             //newValue to add the items back to stores
-            var newValue = db.tb_Product.Where(p => p.Name_Product == delete.Name_Product).First();
-            newValue.Quantity = (newValue.Quantity + delete.Quantity);
+            var newValue = db.ITEMS.Where(p => p.Name_Item == delete.Name_Item).First();
+            newValue.STOCK_LEVEL = newValue.STOCK_LEVEL + (int)delete.QUANTITY;
 
             db.tb_Cart.Remove(delete);
             
@@ -83,7 +83,7 @@ namespace Project_MVC5.Controllers
 
         // new Email Sending method
 
-        public void Email(tb_Product prox)
+        public void Email(ITEMS prox)
         {
 
                 string smtpUserName = "creedsadun94@gmail.com";
@@ -93,7 +93,7 @@ namespace Project_MVC5.Controllers
                 
                 string emailTo = "thamasha@northshore.edu.lk";
                 string subject = "Stores Notification";
-                string body = "This is an ERP test <br/> "+prox.Name_Product+" sold out";
+                string body = "This is an ERP test <br/> "+prox.Name_Item+" sold out";
 
                 Project_MVC5.Models.EmailService newService = new Models.EmailService();
 

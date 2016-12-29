@@ -13,7 +13,7 @@ namespace Project_MVC5.Controllers
     public class Report_SalesOrderController : Controller
     {
         // GET: Report_SalesOrder
-        private Demo_onlineEntities db = new Demo_onlineEntities();
+        private WICKRAMA_STORESEntities db = new WICKRAMA_STORESEntities();
         public ActionResult Index()
         {
 

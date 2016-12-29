@@ -12,7 +12,7 @@ namespace Project_MVC5.Controllers
 {
     public class tb_SalesController : Controller
     {
-        private Demo_onlineEntities db = new Demo_onlineEntities();
+        private WICKRAMA_STORESEntities db = new WICKRAMA_STORESEntities();
 
         // GET: tb_Sales
         public ActionResult Index()

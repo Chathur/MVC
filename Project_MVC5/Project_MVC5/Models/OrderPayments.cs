@@ -12,14 +12,15 @@ namespace Project_MVC5.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tb_order_detail
+    public partial class OrderPayments
     {
-        public int ID_orderDetails { get; set; }
-        public Nullable<int> ID_order { get; set; }
-        public Nullable<int> ID_Product { get; set; }
-        public string Name_product { get; set; }
-        public Nullable<int> Quantity { get; set; }
-        public Nullable<double> Price { get; set; }
-        public Nullable<double> Total_money { get; set; }
+        public int OrderPaymentsId { get; set; }
+        public Nullable<int> OrderNo { get; set; }
+        public Nullable<decimal> CashAmount { get; set; }
+        public Nullable<decimal> CardAmount { get; set; }
+        public Nullable<decimal> ChequeAmount { get; set; }
+        public Nullable<decimal> OtherAmount { get; set; }
+        public Nullable<System.DateTime> DatePaid { get; set; }
+        public Nullable<int> TakenBy { get; set; }
     }
 }

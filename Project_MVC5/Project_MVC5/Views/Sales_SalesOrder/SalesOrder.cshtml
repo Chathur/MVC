@@ -1,4 +1,6 @@
 ﻿@model IEnumerable<Project_MVC5.Models.tb_SalesOrder>
+
+
 @{
     ViewBag.Title = "SalesOrder";
     Layout = "~/Views/Shared/_SalesLayout.cshtml";
@@ -7,18 +9,20 @@
     var Customer = "";
     DateTime Date = DateTime.Now;
     var Employee = "";
+    var route = ViewBag.route;
 
     if (Model != null)
     {
 
         var list = Model.ToList();
-        for (int i = 0; i == 0; i++)
+        for (int i = 0; i < list.Count(); i++)
         {
             Bill_No = list[i].Bill_No;
             Customer = list[i].Customer;
             Date = list[i].Date;
             Employee = list[i].Employee;
-            
+            Customer = list[i].Customer;
+
         }
 
 
@@ -32,20 +36,34 @@
 @* add new & edit*@
 
 <section class="content">
-
-
+   
 
     <form class="form-horizontal" action="/Sales_SalesOrder/AddorEdit" method="post">
 
-        <div class="box box-info">
+         <div class="box box-info">
 
             <div class="box-body">
                 <div class="form-horizontal form-control-static">
                     <div class="form-group-sm form-inline form-control-static">
 
-                        <label class="control-label col-md-push-12">Customer</label> &nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="text" class="form-control col-md-push-12 bg-gray-light" name="Customer" id="Customer" value="@Customer" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="hidden" name="ID_Product" id="ID_Product" />
+                        @Html.ValidationSummary(true)
+                        <div>
+
+                            @Html.Label("Route")
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            
+
+                            @Html.DropDownList("Route", (ViewBag.route as SelectList), "-- Please Select a Route  --", new { style = "width:250px", @class = "form-control col-md-push-12 " })
+
+                        </div>
+                        <br />   
+                        @Html.Label("Customer")
+                        
+                        @Html.DropDownList("Customer", new SelectList(string.Empty, "Value", "Text"),Customer,
+                        new { style = "width:250px", @class = "form-control col-sm-push-12 " })
+                       
+                       
+                       
 
                         <label class="control-label col-md-push-12">Bill No</label>&nbsp;&nbsp;&nbsp;&nbsp;
                         <input type="text" class="form-control col-md-push-12 bg-gray-light" name="Bill_No" id="Bill_No" value="@Bill_No" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -113,7 +131,7 @@
                     if (Bill_No == item.Bill_No)
                     {
                         sum += (double)item.Total;
-                                <tr class="main-data" data-id="@item.ID_Product" data-bill="@item.Bill_No" data-date="@item.Date" data-emp="@item.Employee" data-cus="@item.Customer">
+                                <tr class="main-data" data-id="@item.item_id" data-bill="@item.Bill_No" data-date="@item.Date" data-emp="@item.Employee" data-cus="@item.Customer">
                                     <td>@item.Bill_No</td>
                                     <td>@item.Date</td>
                                     <td>@item.Employee</td>
@@ -122,7 +140,7 @@
                                     <td>@item.Quantity</td>
                                     <td>@item.Total</td>
                                     <td>
-                                        <a href="/Sales_SalesOrder/Delete/@item.ID_Product">Delete</a> | <a href="#" onclick="showedit(this)">Edit</a>
+                                        <a href="/Sales_SalesOrder/Delete/@item.item_id">Delete</a> | <a href="#" onclick="showedit(this)">Edit</a>
                                     </td>
                                 </tr>
                             }
@@ -172,6 +190,33 @@
 
 
     </script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        //Country Dropdown Selectedchange event
+        $("#Route").change(function () {
+            $("#Customer").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetCustomers")', // Calling json method
+                dataType: 'json',
+                data: { id: $("#Route").val() },
+                // Get Selected Country ID.
+
+                success: function (customers) {
+                    $.each(customers, function (i, customer) {
+                        $("#Customer").append('<option value="' + customer.Value + '">' +
+                             customer.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve states.' + ex);
+                }
+            });
+            return false;
+        })
+    });
+</script>
 
 
 

@@ -12,7 +12,7 @@ namespace Project_MVC5.Controllers
     {
 
         // GET: Sales_Sales
-        Demo_onlineEntities db = new Demo_onlineEntities();
+        WICKRAMA_STORESEntities db = new WICKRAMA_STORESEntities();
        
         int page_index = 1;
 
@@ -30,7 +30,7 @@ namespace Project_MVC5.Controllers
                 var results = db.tb_SalesOrder
                     .Where(p => (p.Bill_No.Equals(model.Bill_No)
                                 ))
-                     .OrderBy(p => p.ID_Product);
+                     .OrderBy(p => p.item_id);
 
                 var pageIndex = model.Page ?? 1;
                
@@ -43,7 +43,7 @@ namespace Project_MVC5.Controllers
        public ActionResult Salesnew(int id)
         {
             tb_SalesOrder pro = new tb_SalesOrder();
-            var results = db.tb_SalesOrder.Where(p => p.Bill_No == id).OrderBy(p => p.ID_Product);
+            var results = db.tb_SalesOrder.Where(p => p.Bill_No == id).OrderBy(p => p.item_id);
             pro.SearchResults = results.ToPagedList(page_index, 500);
             return View(pro);
 
@@ -55,7 +55,7 @@ namespace Project_MVC5.Controllers
         {
 
                 // Add new
-                if (pr.ID_Product == 0)
+                if (pr.item_id == 0)
                 {
                     tb_SalesOrder pro = new tb_SalesOrder();
                     pro.Name_Product = pr.Name_Product;
@@ -70,7 +70,7 @@ namespace Project_MVC5.Controllers
                 }
                 else
                 {
-                    var update = db.tb_SalesOrder.Find(pr.ID_Product);
+                    var update = db.tb_SalesOrder.Find(pr.item_id);
 
                     update.Name_Product = pr.Name_Product;
                     update.Price = (double)pr.Price;
@@ -90,7 +90,7 @@ namespace Project_MVC5.Controllers
 
         public ActionResult Delete(int id)
         {
-            var delete = db.tb_SalesOrder.Where(p => p.ID_Product == id).First();
+            var delete = db.tb_SalesOrder.Where(p => p.item_id == id).First();
             db.tb_SalesOrder.Remove(delete);
             db.SaveChanges();
 

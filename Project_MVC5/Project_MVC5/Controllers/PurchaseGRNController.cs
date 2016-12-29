@@ -9,7 +9,7 @@ namespace Project_MVC5.Controllers
 {
     public class PurchaseGRNController : Controller
     {
-        Demo_onlineEntities db = new Demo_onlineEntities();
+        WICKRAMA_STORESEntities db = new WICKRAMA_STORESEntities();
         // GET: PurchaseGRN
         public ActionResult Index()
         {
@@ -17,29 +17,28 @@ namespace Project_MVC5.Controllers
         }
         public ActionResult ViewPurchaseGRN()
         {
-            return View(db.tb_Product.OrderByDescending(p => p.ID_Product).ToList());
+            return View(db.ITEMS.OrderByDescending(p => p.StockId).ToList());
         }
-        public ActionResult AddorEdit(tb_Product pr)
+        public ActionResult AddorEdit(ITEMS pr)
         {
             
-            if (pr.ID_Product == 0) // Add new
+            if (pr.StockId == 0) // Add new
             {
-                tb_Product pro = new tb_Product();
-                pro.Name_Product = pr.Name_Product;
-                pro.Price = pr.Price;
-                pro.Quantity = pr.Quantity;
-                pro.Description = pr.Description;
-                db.tb_Product.Add(pro);
+                ITEMS pro = new ITEMS();
+                pro.Name_Item = pr.Name_Item;
+                pro.COST_PRICE = pr.COST_PRICE;
+                pro.STOCK_LEVEL = (pr.STOCK_LEVEL+(int)pr.Add_Quantity);
+                db.ITEMS.Add(pro);
                 
                 
             }
             else // edit
             {
-                var update = db.tb_Product.Find(pr.ID_Product);
-                update.Name_Product = pr.Name_Product;
-                update.Price = pr.Price;
-                update.Quantity = pr.Quantity;
-                update.Description = pr.Description;
+                var update = db.ITEMS.Find(pr.StockId);
+                update.Name_Item = pr.Name_Item;
+                update.COST_PRICE = pr.COST_PRICE;
+                update.STOCK_LEVEL = (pr.STOCK_LEVEL + (int)pr.Add_Quantity);
+                
                 
             }
             db.SaveChanges();
@@ -49,8 +48,8 @@ namespace Project_MVC5.Controllers
 
         public ActionResult Delete(int id)
         {
-            var delete = db.tb_Product.Where(p => p.ID_Product == id).First();
-            db.tb_Product.Remove(delete);
+            var delete = db.ITEMS.Where(p => p.StockId == id).First();
+            db.ITEMS.Remove(delete);
             db.SaveChanges();
             return RedirectToAction("ViewPurchaseGRN", "PurchaseGRN");
         }

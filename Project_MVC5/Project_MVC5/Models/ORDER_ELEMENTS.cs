@@ -9,14 +9,13 @@
 
 namespace Project_MVC5.Models
 {
-    using PagedList;
     using System;
     using System.Collections.Generic;
-
-    public partial class tb_Cart
+    
+    public partial class ORDER_ELEMENTS
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tb_Cart()
+        public ORDER_ELEMENTS()
         {
             this.ProductsAllocatedToOrders = new HashSet<ProductsAllocatedToOrders>();
         }
@@ -25,19 +24,14 @@ namespace Project_MVC5.Models
         public Nullable<int> STOCK_CODE { get; set; }
         public Nullable<float> QUANTITY { get; set; }
         public Nullable<int> ORDER_NO { get; set; }
-        public double UNIT_PRICE { get; set; }
-        public double BUY_PRICE { get; set; }
+        public Nullable<decimal> UNIT_PRICE { get; set; }
+        public Nullable<decimal> BUY_PRICE { get; set; }
         public Nullable<int> StatusId { get; set; }
-        public Nullable<double> Total { get; set; }
-        public string Name_Item { get; set; }
     
-        public virtual ITEMSS ITEMSS { get; set; }
+        public virtual ITEMS ITEMS { get; set; }
         public virtual OrderElementsStatusLookup OrderElementsStatusLookup { get; set; }
         public virtual ORDERS ORDERS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductsAllocatedToOrders> ProductsAllocatedToOrders { get; set; }
-        public IPagedList<tb_Cart> SearchResults { get; set; }
-        public string SearchButton { get; set; }
-        public int? Page { get; set; }
     }
 }

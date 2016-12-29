@@ -12,13 +12,9 @@ namespace Project_MVC5.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tb_order
+    public partial class ProductLocations
     {
-        public int ID_order { get; set; }
-        public string Code_Order { get; set; }
-        public string Name_Order { get; set; }
-        public string Type_Order { get; set; }
-        public Nullable<System.DateTime> Create_date { get; set; }
-        public Nullable<double> Total_money { get; set; }
+        public int LocationId { get; set; }
+        public string Description { get; set; }
     }
 }

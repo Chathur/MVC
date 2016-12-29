@@ -13,18 +13,24 @@ namespace Project_MVC5.Models
     using System;
     using System.Collections.Generic;
 
-    public partial class tb_Customer
+    public partial class Customers
     {
-        public int ID_Customer { get; set; }
-        public string Name_Customer { get; set; }
-        public string Address_Customer { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Customers()
+        {
+            this.ORDERS = new HashSet<ORDERS>();
+        }
+    
+        public int CustomerId { get; set; }
+        public string CUSTOMER_NAME { get; set; }
+        public string ADDRESS { get; set; }
         public string Email { get; set; }
         public Nullable<decimal> CreditLimit { get; set; }
-        public string Tel_Customer { get; set; }
-        public int Route_Customer { get; set; }
+        public string Telephone { get; set; }
     
-        public virtual Route Route { get; set; }
-        public IPagedList<tb_Customer> SearchResults { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ORDERS> ORDERS { get; set; }
+        public IPagedList<Customers> SearchResults { get; set; }
         public string SearchButton { get; set; }
         public int? Page { get; set; }
     }
