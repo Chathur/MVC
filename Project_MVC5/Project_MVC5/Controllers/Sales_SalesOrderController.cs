@@ -12,40 +12,46 @@ namespace Project_MVC5.Controllers
     {
         // GET: Sales_SalesOrder
         WICKRAMA_STORESEntities db = new WICKRAMA_STORESEntities();
-        
+        string custo = " ";
         public ActionResult Index()
         {
             return View();
         }
-        public ActionResult SalesOrder()
+        public ActionResult SalesOrder(int ? id)
 
         {
-            
+           
             ViewBag.route = new SelectList(db.Route, "Route_id", "Route_desc");
+            ViewBag.customer = new SelectList(db.tb_Customer.Where(p=>p.Route_Customer==id), "Name_Customer", "Name_Customer"+"Route_Customer");
+            ViewBag.product = new SelectList(db.ITEMS, "Name_Item", "Name_Item");
             return View(db.tb_SalesOrder.OrderByDescending(p => p.item_id).ToList());
         }
 
         public IList<tb_Customer> Getcustomer(int id)
         {
+            custo = db.tb_Customer.Where(m => m.Route_Customer == id).ToString(); 
             return db.tb_Customer.Where(m =>m.Route_Customer == id).ToList();
+
         }
 
-        public JsonResult GetCustomers(string id)
+        public ActionResult GetCustomers(string id)
         {
             List<SelectListItem> customers = new List<SelectListItem>();
             var customerList = this.Getcustomer(Convert.ToInt32(id));
+            
             var customerData = customerList.Select(m => new SelectListItem()
             {
                 Text = m.Name_Customer,
                 Value = m.Name_Customer.ToString()
             });
-            return Json(customerData, JsonRequestBehavior.AllowGet);
+
+            return RedirectToAction("SalesOrder", "Sales_SalesOrder");
         }
         [HttpPost]
         public ActionResult Index(FormCollection formdata)
         {
             // Get Employee information to insert into Data Base
-            return RedirectToAction("Index", "Sales_SalesOrder");
+            return RedirectToAction("SalesOrder", "Sales_SalesOrder");
         }
 
         public ActionResult AddorEdit(tb_SalesOrder pr)
@@ -63,7 +69,7 @@ namespace Project_MVC5.Controllers
                 pro.Customer = pr.Customer;
                 pro.Date = pr.Date;
                 pro.Employee = pr.Employee;
-                
+            
                 db.tb_SalesOrder.Add(pro);
           
         
@@ -75,7 +81,7 @@ namespace Project_MVC5.Controllers
 
         public ActionResult Delete(int id)
         {
-            var delete = db.tb_SalesOrder.Where(p => p.item_id == id).First();
+            var delete = db.tb_SalesOrder.Where(p => p.Sales_order_id == id).First();
             db.tb_SalesOrder.Remove(delete);
             db.SaveChanges();
             

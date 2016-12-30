@@ -116,14 +116,14 @@
             foreach (var item in Model.SearchResults)
             {
                 sum += (double)item.Total;
-                <tr class="main-data" data-id="@item.ID_Product">
+                <tr class="main-data" data-id="@item.Sales_order_id">
 
                     <td>@item.Name_Product</td>
                     <td>@item.Price</td>
                     <td>@item.Quantity</td>
                     <td>@item.Total</td>
                     <td>
-                        <a href="/Sales_Sales/Delete/@item.ID_Product">Delete</a> | <a href="#" onclick="showedit(this)">Edit</a>
+                        <a href="/Sales_Sales/Delete/@item.Sales_order_id">Delete</a> | <a href="#" onclick="showedit(this)">Edit</a>
                     </td>
                 </tr>
 

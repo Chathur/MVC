@@ -28,6 +28,7 @@ namespace Project_MVC5.Models
         public string Code_Product { get; set; }
         public string Name_Product { get; set; }
         public double Total { get; set; }
+        public string Route { get; set; }
 
         public IPagedList<tb_SalesOrder> SearchResults { get; set; }
         public string SearchButton { get; set; }
