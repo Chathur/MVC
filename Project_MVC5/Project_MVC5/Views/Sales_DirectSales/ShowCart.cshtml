@@ -59,13 +59,13 @@
 
                     sum += (double)item.Total;
 
-                                    <tr class="main-data" data-id="@item.ITEM_ID">
-                                        <td>@item.Name_Item</td>
-                                        <td>@item.UNIT_PRICE</td>
-                                        <td>@item.QUANTITY</td>
+                                    <tr class="main-data" data-id="@item.ID_Product">
+                                        <td>@item.Name_Product</td>
+                                        <td>@item.Price</td>
+                                        <td>@item.Quantity</td>
                                         <td>@item.Total</td>
                                         <td>
-                                            <a href="/Sales_DirectSales/Delete/@item.ITEM_ID">Delete</a> | <a href="#" onclick="showedit(this)">Edit</a>
+                                            <a href="/Sales_DirectSales/Delete/@item.ID_Product">Delete</a> | <a href="#" onclick="showedit(this)">Edit</a>
                                         </td>
                                     </tr>
 

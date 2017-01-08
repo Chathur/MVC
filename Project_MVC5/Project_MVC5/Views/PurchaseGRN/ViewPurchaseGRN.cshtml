@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Project_MVC5.Models.ITEMS>
+﻿@model IEnumerable<Project_MVC5.Models.tb_Product>
 @{
     ViewBag.Title = "PurchaseGRN";
     Layout = "~/Views/Shared/_PurchaseLayout.cshtml";
@@ -17,26 +17,23 @@
 
         <form class="form-horizontal" action="/PurchaseGRN/AddorEdit" method="post">
 
-            <div>
-
-                @Html.Label("Item")
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-
-                @Html.DropDownList("Name_Item", (ViewBag.items as SelectList), "-- Please Select a Route  --", new { style = "width:250px", @class = "form-control col-md-push-12 " })
-
-            </div>
-            
             <div class="form-group">
-
-                <input type="hidden" name="StockId" id="StockId" />
+                <label class="control-label col-sm-4">Product name</label>
+                <input type="text" class="form-control col-xs-1" name="Name_Product" id="Name_Product" />
+                <input type="hidden" name="ID_Product" id="ID_Product" />
             </div>
-
+            <div class="form-group">
+                <label class="control-label col-sm-4">Product Price</label>
+                <input type="text" class="form-control col-sm-6" name="Price" id="Price" />
+            </div>
             <div class="form-group">
                 <label class="control-label col-sm-4">Product Quantity</label>
-                <input type="text" class="form-control col-sm-6" name="Add_Quantity" id="Add_Quantity" />
+                <input type="text" class="form-control col-sm-6" name="Quantity" id="Quantity" />
             </div>
-
+            <div class="form-group">
+                <label class="control-label col-sm-4">Product Desc</label>
+                <input type="text" class="form-control col-sm-6" name="Description" id="Description" />
+            </div>
             <input type="submit" value="SAVE" class="btn btn-danger text-center" />
         </form>
     </div>
@@ -61,13 +58,13 @@
                 {
                     foreach (var item in Model)
                     {
-                        <tr class="main-data" data-id="@item.StockId">
-                            <td>@item.Name_Item</td>
-                            <td>@item.COST_PRICE</td>
-                            <td>@item.Add_Quantity</td>
-                            <td>@item.STOCK_LEVEL</td>
+                        <tr class="main-data" data-id="@item.ID_Product">
+                            <td>@item.Name_Product</td>
+                            <td>@item.Price</td>
+                            <td>@item.Quantity</td>
+                            <td>@item.Description</td>
                             <td>
-                                <a href="/PurchaseGRN/Delete/@item.StockId">Delete</a> | <a href="#" onclick="showedit(this)">Edit</a>
+                                <a href="/PurchaseGRN/Delete/@item.ID_Product">Delete</a> | <a href="#" onclick="showedit(this)">Edit</a>
                             </td>
                         </tr>
                     }

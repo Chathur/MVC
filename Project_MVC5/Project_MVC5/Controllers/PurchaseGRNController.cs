@@ -17,18 +17,30 @@ namespace Project_MVC5.Controllers
         }
         public ActionResult ViewPurchaseGRN()
         {
-            ViewBag.items = new SelectList(db.ITEMS, "Name_Item", "Name_Item");
             return View(db.ITEMS.OrderByDescending(p => p.StockId).ToList());
         }
         public ActionResult AddorEdit(ITEMS pr)
         {
-            var update = db.ITEMS.Find(pr.StockId);
-
-            update.Add_Quantity = pr.Add_Quantity;
-                update.STOCK_LEVEL = (update.STOCK_LEVEL+(int)pr.Add_Quantity);
-
+            
+            if (pr.StockId == 0) // Add new
+            {
+                ITEMS pro = new ITEMS();
+                pro.Name_Item = pr.Name_Item;
+                pro.COST_PRICE = pr.COST_PRICE;
+                pro.STOCK_LEVEL = (pr.STOCK_LEVEL+(int)pr.Add_Quantity);
+                db.ITEMS.Add(pro);
                 
-   
+                
+            }
+            else // edit
+            {
+                var update = db.ITEMS.Find(pr.StockId);
+                update.Name_Item = pr.Name_Item;
+                update.COST_PRICE = pr.COST_PRICE;
+                update.STOCK_LEVEL = (pr.STOCK_LEVEL + (int)pr.Add_Quantity);
+                
+                
+            }
             db.SaveChanges();
 
             return RedirectToAction("ViewPurchaseGRN", "PurchaseGRN");

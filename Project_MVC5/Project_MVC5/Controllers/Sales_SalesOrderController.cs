@@ -12,46 +12,42 @@ namespace Project_MVC5.Controllers
     {
         // GET: Sales_SalesOrder
         WICKRAMA_STORESEntities db = new WICKRAMA_STORESEntities();
-        string custo = " ";
+        
         public ActionResult Index()
         {
             return View();
         }
-        public ActionResult SalesOrder(int ? id)
+        public ActionResult SalesOrder()
 
         {
-           
+            
             ViewBag.route = new SelectList(db.Route, "Route_id", "Route_desc");
-            ViewBag.customer = new SelectList(db.tb_Customer.Where(p=>p.Route_Customer==id), "Name_Customer", "Name_Customer"+"Route_Customer");
-            ViewBag.product = new SelectList(db.ITEMS, "Name_Item", "Name_Item");
+            ViewBag.customer = new SelectList(db.tb_Customer, "Name_Customer", "Name_Customer");
+            ViewBag.products = new SelectList(db.ITEMS, "Name_Item", "Name_Item");
             return View(db.tb_SalesOrder.OrderByDescending(p => p.item_id).ToList());
         }
 
         public IList<tb_Customer> Getcustomer(int id)
         {
-            custo = db.tb_Customer.Where(m => m.Route_Customer == id).ToString(); 
             return db.tb_Customer.Where(m =>m.Route_Customer == id).ToList();
-
         }
 
-        public ActionResult GetCustomers(string id)
+        public JsonResult GetCustomers(string id)
         {
             List<SelectListItem> customers = new List<SelectListItem>();
             var customerList = this.Getcustomer(Convert.ToInt32(id));
-            
             var customerData = customerList.Select(m => new SelectListItem()
             {
                 Text = m.Name_Customer,
                 Value = m.Name_Customer.ToString()
             });
-
-            return RedirectToAction("SalesOrder", "Sales_SalesOrder");
+            return Json(customerData, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
         public ActionResult Index(FormCollection formdata)
         {
             // Get Employee information to insert into Data Base
-            return RedirectToAction("SalesOrder", "Sales_SalesOrder");
+            return RedirectToAction("Index", "Sales_SalesOrder");
         }
 
         public ActionResult AddorEdit(tb_SalesOrder pr)
@@ -65,11 +61,15 @@ namespace Project_MVC5.Controllers
                 pro.Price = pr.Price;
                 pro.Quantity = pr.Quantity;
                 pro.Bill_No = pr.Bill_No;
-                // pro.Code_Product = pr.Code_Product;
+            // pro.Code_Product = pr.Code_Product;
                 pro.Customer = pr.Customer;
+            if (pr.Customer == null)
+            {
+                pro.Customer = pr.SearchButton;
+            }
                 pro.Date = pr.Date;
                 pro.Employee = pr.Employee;
-            
+                
                 db.tb_SalesOrder.Add(pro);
           
         

@@ -30,7 +30,7 @@ namespace Project_MVC5.Controllers
                 var results = db.tb_SalesOrder
                     .Where(p => (p.Bill_No.Equals(model.Bill_No)
                                 ))
-                     .OrderBy(p => p.item_id);
+                     .OrderBy(p => p.Sales_order_id);
 
                 var pageIndex = model.Page ?? 1;
                
@@ -40,10 +40,10 @@ namespace Project_MVC5.Controllers
             return View(model);
 
         }
-       public ActionResult Salesnew(int id)
+       public ActionResult Salesnew(int ? id)
         {
             tb_SalesOrder pro = new tb_SalesOrder();
-            var results = db.tb_SalesOrder.Where(p => p.Bill_No == id).OrderBy(p => p.item_id);
+            var results = db.tb_SalesOrder.Where(p => p.Bill_No == id).OrderBy(p => p.Sales_order_id);
             pro.SearchResults = results.ToPagedList(page_index, 500);
             return View(pro);
 
@@ -55,10 +55,11 @@ namespace Project_MVC5.Controllers
         {
 
                 // Add new
-                if (pr.item_id == 0)
+                if (pr.Sales_order_id == 0)
                 {
                     tb_SalesOrder pro = new tb_SalesOrder();
                     pro.Name_Product = pr.Name_Product;
+                    pro.Code_Product = pr.Name_Product;
                     pro.Price = (double)pr.Price;
                     pro.Quantity = pr.Quantity;
                     pro.Bill_No = pr.Bill_No;
@@ -70,7 +71,7 @@ namespace Project_MVC5.Controllers
                 }
                 else
                 {
-                    var update = db.tb_SalesOrder.Find(pr.item_id);
+                    var update = db.tb_SalesOrder.Find(pr.Sales_order_id);
 
                     update.Name_Product = pr.Name_Product;
                     update.Price = (double)pr.Price;
@@ -90,11 +91,12 @@ namespace Project_MVC5.Controllers
 
         public ActionResult Delete(int id)
         {
-            var delete = db.tb_SalesOrder.Where(p => p.item_id == id).First();
+            var delete = db.tb_SalesOrder.Where(p => p.Sales_order_id == id).First();
+            var re = delete.Bill_No;
             db.tb_SalesOrder.Remove(delete);
             db.SaveChanges();
 
-            return RedirectToAction("Salesnew", "Sales_Sales");
+            return RedirectToAction("Salesnew", "Sales_Sales", new { id = re});
         }
 
         public ActionResult Add(int id)
@@ -113,7 +115,7 @@ namespace Project_MVC5.Controllers
                     pro.Customer = items.Customer;
                     pro.Date = items.Date;
                     pro.Employee = items.Employee;
-                    //pro.ID_Product = item.ID_Product;
+                    pro.item_id = items.item_id;
                     pro.Name_Product = items.Name_Product;
                     pro.Price =(double)items.Price;
                     pro.Quantity = items.Quantity;

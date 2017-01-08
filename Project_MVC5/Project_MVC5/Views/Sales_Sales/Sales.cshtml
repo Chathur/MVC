@@ -70,7 +70,7 @@
 
                         <label class="control-label col-md-push-12">Customer</label> &nbsp;&nbsp;&nbsp;&nbsp;
                         <input type="text" class="form-control col-md-push-12 bg-gray-light" name="Customer" id="Customer" value="@Customer" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="hidden" name="ID_Product" id="ID_Product" />
+                        <input type="hidden" name="item_id" id="item_id" />
                         <input type="hidden" name="Bill_No" id="Bill_No" value="@Bill_No" />
 
 
@@ -89,9 +89,6 @@
                 <div class="form-group-sm form-inline form-control-static">
                     <label class="control-label col-md-1">Product Name</label>
                     <input type="text" class="form-control col-md-1" name="Name_Product" id="Name_Product" />
-
-                    <label class="control-label col-md-1">Price</label>
-                    <input type="text" class="form-control col-md-1" name="Price" id="Price" />
 
                     <label class="control-label col-md-1">Quantity</label>
                     <input type="text" class="form-control col-md-1" name="Quantity" id="Quantity" />
@@ -126,7 +123,7 @@
                 foreach (var item in Model.SearchResults)
                 {
                     sum += (double)item.Total;
-                            <tr class="main-data" data-id="@item.Sales_order_id">
+                            <tr class="main-data" data-id="@item.item_id">
 
                                 <td>@item.Name_Product</td>
                                 <td>@item.Price</td>
@@ -174,7 +171,7 @@
         function showedit(objects) {
             var _this = $(objects).closest(".main-data");
             $("#Name_Product").val(_this.find("td").eq(0).html());
-            $("#Price").val(_this.find("td").eq(1).html());
+            
             $("#Quantity").val(_this.find("td").eq(2).html());
             $("#ID_Product").val(_this.attr("data-id"));
 
