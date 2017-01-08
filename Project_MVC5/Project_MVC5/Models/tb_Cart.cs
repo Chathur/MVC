@@ -30,14 +30,14 @@ namespace Project_MVC5.Models
         public Nullable<int> StatusId { get; set; }
         public Nullable<double> Total { get; set; }
         public string Name_Item { get; set; }
-    
+        public IPagedList<tb_Cart> SearchResults { get; set; }
+        public string SearchButton { get; set; }
+        public int? Page { get; set; }
+
         public virtual ITEMSS ITEMSS { get; set; }
         public virtual OrderElementsStatusLookup OrderElementsStatusLookup { get; set; }
         public virtual ORDERS ORDERS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductsAllocatedToOrders> ProductsAllocatedToOrders { get; set; }
-        public IPagedList<tb_Cart> SearchResults { get; set; }
-        public string SearchButton { get; set; }
-        public int? Page { get; set; }
     }
 }

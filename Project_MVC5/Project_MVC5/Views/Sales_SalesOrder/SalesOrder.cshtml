@@ -140,7 +140,7 @@
                                     <td>@item.Quantity</td>
                                     <td>@item.Total</td>
                                     <td>
-                                        <a href="/Sales_SalesOrder/Delete/@item.Sales_order_id">Delete</a> | <a href="#" onclick="showedit(this)">Edit</a>
+                                        <a href="/Sales_SalesOrder/Delete/@item.Sales_order_id">Delete</a> 
                                     </td>
                                 </tr>
                             }
@@ -175,9 +175,9 @@
     <script>
         function showedit(objects) {
             var _this = $(objects).closest(".main-data");
-            $("#Name_Product").val(_this.find("td").eq(3).html());
+            $("#Name_Product").val(_this.find("td").eq(4).html());
             $("#Price").val(_this.find("td").eq(4).html());
-            $("#Quantity").val(_this.find("td").eq(5).html());
+            $("#Quantity").val(_this.find("td").eq(6).html());
             $("#ID_Product").val(_this.attr("data-id"));
             $("#Bill_No").val(_this.attr("data-bill"));
             $("#Date").val(_this.attr("data-date"));

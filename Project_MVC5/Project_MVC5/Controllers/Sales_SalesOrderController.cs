@@ -52,13 +52,14 @@ namespace Project_MVC5.Controllers
 
         public ActionResult AddorEdit(tb_SalesOrder pr)
         {
-
+            var price = db.ITEMS.Where(p => p.Name_Item == pr.Name_Product).First();
+            
             // Add new
             
                 tb_SalesOrder pro = new tb_SalesOrder();
                 pro.Name_Product = pr.Name_Product;
                 pro.Code_Product = pr.Name_Product;
-                pro.Price = pr.Price;
+                pro.Price = price.COST_PRICE;
                 pro.Quantity = pr.Quantity;
                 pro.Bill_No = pr.Bill_No;
             // pro.Code_Product = pr.Code_Product;
