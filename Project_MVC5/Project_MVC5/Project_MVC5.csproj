@@ -339,6 +339,9 @@
     <Compile Include="Models\SUB_ITEM_TYPES_LOOKUP.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TaxRates.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -513,6 +516,9 @@
     <Content Include="Views\HR_Supplier\SearchSupplier.cshtml" />
     <Content Include="Views\HR_Supplier\AddSupplier.cshtml" />
     <Content Include="Views\Stock_AddItem\Stock_AddItem.cshtml" />
+    <Content Include="Views\HR_Customers\SearchCustomer.cshtml" />
+    <Content Include="Views\HR_Employee\SearchEmployee.cshtml" />
+    <Content Include="Views\HR_Employee\AddEmployee.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

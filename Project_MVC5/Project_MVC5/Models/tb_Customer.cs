@@ -26,5 +26,6 @@ namespace Project_MVC5.Models
         public string SearchButton { get; set; }
         public int? Page { get; set; }
         public virtual Route Route { get; set; }
+
     }
 }

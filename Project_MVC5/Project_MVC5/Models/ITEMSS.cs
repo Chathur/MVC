@@ -17,7 +17,6 @@ namespace Project_MVC5.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ITEMSS()
         {
-            this.tb_Cart = new HashSet<tb_Cart>();
             this.ProductInfo = new HashSet<ProductInfo>();
             this.ProductsAllocatedToOrders = new HashSet<ProductsAllocatedToOrders>();
         }
@@ -38,8 +37,6 @@ namespace Project_MVC5.Models
         public int ItemTypeId { get; set; }
         public Nullable<double> Add_Quantity { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tb_Cart> tb_Cart { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductInfo> ProductInfo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -60,6 +60,7 @@ namespace Project_MVC5.Models
         public virtual DbSet<sales> sales { get; set; }
         public virtual DbSet<sales_order_detail> sales_order_detail { get; set; }
         public virtual DbSet<SUB_ITEM_TYPES_LOOKUP> SUB_ITEM_TYPES_LOOKUP { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<TaxRates> TaxRates { get; set; }
         public virtual DbSet<tb_Cart> tb_Cart { get; set; }
         public virtual DbSet<tb_Customer> tb_Customer { get; set; }

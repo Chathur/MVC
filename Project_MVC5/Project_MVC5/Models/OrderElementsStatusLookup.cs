@@ -14,17 +14,8 @@ namespace Project_MVC5.Models
     
     public partial class OrderElementsStatusLookup
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public OrderElementsStatusLookup()
-        {
-            this.tb_Cart = new HashSet<tb_Cart>();
-        }
-    
         public int StatusId { get; set; }
         public string OrderElementStatus { get; set; }
         public Nullable<int> ItemOrder { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tb_Cart> tb_Cart { get; set; }
     }
 }

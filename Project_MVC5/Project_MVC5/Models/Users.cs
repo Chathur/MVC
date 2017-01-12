@@ -17,7 +17,6 @@ namespace Project_MVC5.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Users()
         {
-            this.ORDERS = new HashSet<ORDERS>();
             this.Permissions = new HashSet<Permissions>();
         }
     
@@ -27,8 +26,6 @@ namespace Project_MVC5.Models
         public Nullable<bool> Active { get; set; }
         public Nullable<int> Employee_id { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ORDERS> ORDERS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Permissions> Permissions { get; set; }
     }

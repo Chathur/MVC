@@ -12,14 +12,12 @@ namespace Project_MVC5.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ORDER_STATUS_LOOKUP
+    public partial class sysdiagrams
     {
-        public int STATUS_ID { get; set; }
-        public string ORDER_STATUS { get; set; }
-        public int OrderStatusTypeId { get; set; }
-        public bool System { get; set; }
-        public bool DefaultType { get; set; }
-    
-        public virtual OrderStatusTypeLookup OrderStatusTypeLookup { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

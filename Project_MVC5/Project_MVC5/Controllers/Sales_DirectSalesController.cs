@@ -20,40 +20,46 @@ namespace Project_MVC5.Controllers
         }
         public ActionResult ShowCart()
         {
-            return View(db.tb_Cart.ToList());
+            ViewBag.route = new SelectList(db.Route, "Route_id", "Route_desc");
+            ViewBag.customer = new SelectList(db.tb_Customer, "Name_Customer", "Name_Customer");
+            ViewBag.products = new SelectList(db.ITEMS, "Name_Item", "Name_Item");
+            return View(db.tb_Sales.OrderByDescending(p => p.item_id).ToList());
         }
-        public ActionResult AddorEdit(tb_Cart ca)
+        public ActionResult AddorEdit(tb_Sales ca)
         {
 
-            if (ca.ITEM_ID == 0) // Add new
+            if (ca.ID == 0) // Add new
             {
-               tb_Cart cart = new tb_Cart();
-               //prox to reduce the quantity from stores
-               var prox = db.ITEMS.Where(p => p.Name_Item== ca.Name_Item).First();
-              prox.STOCK_LEVEL = prox.STOCK_LEVEL -(int) ca.QUANTITY;
-               int ? newValue = (int)prox.STOCK_LEVEL;
-               db.Entry(prox).State = EntityState.Modified;
+                var price = db.ITEMS.Where(p => p.Name_Item == ca.Name_Product).First();
+
+                var prox = db.ITEMS.Where(p => p.Name_Item == ca.Name_Product).First();
+                prox.STOCK_LEVEL = prox.STOCK_LEVEL - (int)ca.Quantity;
+                int? newValue = (int)prox.STOCK_LEVEL;
+                db.Entry(prox).State = EntityState.Modified;
 
                 if (newValue <= prox.MIN_MIN_STOCK_LEVEL) // minimum stock level
                 {
                     Email(prox);
                 }
+                // Add new
 
-               cart.Name_Item = ca.Name_Item;
-               cart.UNIT_PRICE = ca.UNIT_PRICE;
-               cart.QUANTITY = ca.QUANTITY;
-
-               db.tb_Cart.Add(cart);
+                tb_Sales pro = new tb_Sales();
+                pro.Name_Product = ca.Name_Product;
+                pro.Code_Product = ca.Name_Product;
+                pro.Price = price.COST_PRICE;
+                pro.Quantity = ca.Quantity;
+                pro.Bill_No = ca.Bill_No;
+                // pro.Code_Product = pr.Code_Product;
+                pro.Customer = ca.Customer;
+                if (ca.Customer == null)
+                {
+                    pro.Customer = ca.SearchButton;
+                }
+                pro.Date = ca.Date;
+                pro.Employee = ca.Employee;
                
-            }
-            else
-            {
-                var update = db.tb_Cart.Find(ca.ITEM_ID);
-                
-                update.Name_Item = ca.Name_Item;
-                update.UNIT_PRICE = ca.UNIT_PRICE;
-                update.QUANTITY = ca.QUANTITY;
-                update.Total = ca.Total;
+
+                db.tb_Sales.Add(pro);
             }
 
             db.SaveChanges();
@@ -62,12 +68,12 @@ namespace Project_MVC5.Controllers
         }
         public ActionResult Delete(int id)
         {
-            var delete = db.tb_Cart.Where(p => p.ITEM_ID == id).First();
+            var delete = db.tb_Sales.Where(p => p.ID == id).First();
             //newValue to add the items back to stores
-            var newValue = db.ITEMS.Where(p => p.Name_Item == delete.Name_Item).First();
-            newValue.STOCK_LEVEL = newValue.STOCK_LEVEL + (int)delete.QUANTITY;
+            var newValue = db.ITEMS.Where(p => p.Name_Item == delete.Name_Product).First();
+            newValue.STOCK_LEVEL = newValue.STOCK_LEVEL + (int)delete.Quantity;
 
-            db.tb_Cart.Remove(delete);
+            db.tb_Sales.Remove(delete);
             
             db.SaveChanges();
             return RedirectToAction("ShowCart", "Sales_DirectSales");

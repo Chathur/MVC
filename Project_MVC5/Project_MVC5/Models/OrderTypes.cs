@@ -14,16 +14,7 @@ namespace Project_MVC5.Models
     
     public partial class OrderTypes
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public OrderTypes()
-        {
-            this.ORDERS = new HashSet<ORDERS>();
-        }
-    
         public int OrderTypeId { get; set; }
         public string Description { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ORDERS> ORDERS { get; set; }
     }
 }

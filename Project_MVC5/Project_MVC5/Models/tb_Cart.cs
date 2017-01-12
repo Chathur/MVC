@@ -15,12 +15,6 @@ namespace Project_MVC5.Models
 
     public partial class tb_Cart
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tb_Cart()
-        {
-            this.ProductsAllocatedToOrders = new HashSet<ProductsAllocatedToOrders>();
-        }
-    
         public int ITEM_ID { get; set; }
         public Nullable<int> STOCK_CODE { get; set; }
         public Nullable<float> QUANTITY { get; set; }
@@ -29,15 +23,15 @@ namespace Project_MVC5.Models
         public double BUY_PRICE { get; set; }
         public Nullable<int> StatusId { get; set; }
         public Nullable<double> Total { get; set; }
-        public string Name_Item { get; set; }
+        public string Name_Product { get; set; }
+        public Nullable<int> Bill_No { get; set; }
+        public string Route { get; set; }
+        public string sales_id { get; set; }
+        public string Discount { get; set; }
+        public string Code_Product { get; set; }
+
         public IPagedList<tb_Cart> SearchResults { get; set; }
         public string SearchButton { get; set; }
         public int? Page { get; set; }
-
-        public virtual ITEMSS ITEMSS { get; set; }
-        public virtual OrderElementsStatusLookup OrderElementsStatusLookup { get; set; }
-        public virtual ORDERS ORDERS { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductsAllocatedToOrders> ProductsAllocatedToOrders { get; set; }
     }
 }

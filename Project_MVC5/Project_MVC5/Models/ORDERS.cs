@@ -14,18 +14,12 @@ namespace Project_MVC5.Models
     
     public partial class ORDERS
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ORDERS()
-        {
-            this.tb_Cart = new HashSet<tb_Cart>();
-        }
-    
         public int ORDER_NO { get; set; }
-        public Nullable<int> CUSTOMER_NO { get; set; }
-        public Nullable<System.DateTime> DATE_PLACED { get; set; }
-        public Nullable<int> STATUS_ID { get; set; }
+        public int CUSTOMER { get; set; }
+        public System.DateTime DATE_PLACED { get; set; }
+        public int Route { get; set; }
         public Nullable<bool> PAID { get; set; }
-        public string CUSTOMER_REF { get; set; }
+        public string Employee { get; set; }
         public Nullable<bool> INVOICED { get; set; }
         public Nullable<System.DateTime> DATE_INVOICED { get; set; }
         public string COMMENTS { get; set; }
@@ -49,11 +43,5 @@ namespace Project_MVC5.Models
         public Nullable<int> OrderType { get; set; }
         public Nullable<System.DateTime> LastModified { get; set; }
         public string ExtOrderNo { get; set; }
-    
-        public virtual ORDER_STATUS_LOOKUP ORDER_STATUS_LOOKUP { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tb_Cart> tb_Cart { get; set; }
-        public virtual OrderTypes OrderTypes { get; set; }
-        public virtual Users Users { get; set; }
     }
 }

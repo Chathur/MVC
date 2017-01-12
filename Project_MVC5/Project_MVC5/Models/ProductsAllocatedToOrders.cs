@@ -19,6 +19,5 @@ namespace Project_MVC5.Models
         public int QtyAllocated { get; set; }
     
         public virtual ITEMSS ITEMSS { get; set; }
-        public virtual tb_Cart tb_Cart { get; set; }
     }
 }
