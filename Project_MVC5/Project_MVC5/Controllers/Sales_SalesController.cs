@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PagedList;
+using System.Data.Entity;
 
 namespace Project_MVC5.Controllers
 {
@@ -58,6 +59,17 @@ namespace Project_MVC5.Controllers
             // Add new
             if (pr.Sales_order_id == 0)
             {
+
+                var prox = db.ITEMS.Where(p => p.Name_Item == pr.Name_Product).First();
+                prox.STOCK_LEVEL = prox.STOCK_LEVEL - (int)pr.Quantity;
+                int? newValue = (int)prox.STOCK_LEVEL;
+                db.Entry(prox).State = EntityState.Modified;
+
+                if (newValue <= prox.MIN_MIN_STOCK_LEVEL) // minimum stock level
+                {
+                    Email(prox);
+                }
+
                 tb_SalesOrder pro = new tb_SalesOrder();
                 pro.Name_Product = pr.Name_Product;
                 pro.Code_Product = pr.Name_Product;
@@ -75,6 +87,16 @@ namespace Project_MVC5.Controllers
             else
             {
                 var update = db.tb_SalesOrder.Find(pr.Sales_order_id);
+
+                var prox = db.ITEMS.Where(p => p.Name_Item == pr.Name_Product).First();
+                prox.STOCK_LEVEL = prox.STOCK_LEVEL - (int)pr.Quantity;
+                int? newValue = (int)prox.STOCK_LEVEL;
+                db.Entry(prox).State = EntityState.Modified;
+
+                if (newValue <= prox.MIN_MIN_STOCK_LEVEL) // minimum stock level
+                {
+                    Email(prox);
+                }
 
                 update.Name_Product = pr.Name_Product;
                 update.Price = price.COST_PRICE;
@@ -95,6 +117,10 @@ namespace Project_MVC5.Controllers
         {
             var delete = db.tb_SalesOrder.Where(p => p.Sales_order_id == id).First();
             db.tb_SalesOrder.Remove(delete);
+
+            var newValue = db.ITEMS.Where(p => p.Name_Item == delete.Name_Product).First();
+            newValue.STOCK_LEVEL = newValue.STOCK_LEVEL + (int)delete.Quantity;
+
             db.SaveChanges();
 
             return RedirectToAction("Salesnew", "Sales_Sales");
@@ -131,6 +157,27 @@ namespace Project_MVC5.Controllers
 
 
             return RedirectToAction("Sales", "Sales_Sales");
+        }
+
+        // new Email Sending method
+
+        public void Email(ITEMS prox)
+        {
+
+            string smtpUserName = "creedsadun94@gmail.com";
+            string smtpPassword = ""; //enter Email Password
+            string smtpHost = "smtp.gmail.com";
+            int smtpPort = 25;
+
+            string emailTo = "thamasha@northshore.edu.lk";
+            string subject = "Stores Notification";
+            string body = "This is an ERP test <br/> " + prox.Name_Item + " sold out";
+
+            Project_MVC5.Models.EmailService newService = new Models.EmailService();
+
+            bool kq = newService.Send(smtpUserName, smtpPassword, smtpHost, smtpPort, emailTo, subject, body);
+
+
         }
     }
 }

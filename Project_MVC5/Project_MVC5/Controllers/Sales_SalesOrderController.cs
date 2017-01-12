@@ -2,6 +2,7 @@
 using Project_MVC5.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -53,10 +54,22 @@ namespace Project_MVC5.Controllers
         public ActionResult AddorEdit(tb_SalesOrder pr)
         {
             var price = db.ITEMS.Where(p => p.Name_Item == pr.Name_Product).First();
-            
+
+            var prox = db.ITEMS.Where(p => p.Name_Item == pr.Name_Product).First();
+            prox.STOCK_LEVEL = prox.STOCK_LEVEL - (int)pr.Quantity;
+            int? newValue = (int)prox.STOCK_LEVEL;
+            db.Entry(prox).State = EntityState.Modified;
+
+            if (newValue <= prox.MIN_MIN_STOCK_LEVEL) // minimum stock level
+            {
+                Email(prox);
+            }
+
+
+
             // Add new
-            
-                tb_SalesOrder pro = new tb_SalesOrder();
+
+            tb_SalesOrder pro = new tb_SalesOrder();
                 pro.Name_Product = pr.Name_Product;
                 pro.Code_Product = pr.Name_Product;
                 pro.Price = price.COST_PRICE;
@@ -68,12 +81,14 @@ namespace Project_MVC5.Controllers
             {
                 pro.Customer = pr.SearchButton;
             }
-                pro.Date = pr.Date;
+
+            
+            pro.Date = pr.Date;
                 pro.Employee = pr.Employee;
                 
                 db.tb_SalesOrder.Add(pro);
           
-        
+              
 
             db.SaveChanges();
 
@@ -84,11 +99,33 @@ namespace Project_MVC5.Controllers
         {
             var delete = db.tb_SalesOrder.Where(p => p.Sales_order_id == id).First();
             db.tb_SalesOrder.Remove(delete);
+            var newValue = db.ITEMS.Where(p => p.Name_Item == delete.Name_Product).First();
+            newValue.STOCK_LEVEL = newValue.STOCK_LEVEL + (int)delete.Quantity;
             db.SaveChanges();
             
             return RedirectToAction("SalesOrder", "Sales_SalesOrder");
         }
-        
+
+        // new Email Sending method
+
+        public void Email(ITEMS prox)
+        {
+
+            string smtpUserName = "creedsadun94@gmail.com";
+            string smtpPassword = ""; //enter Email Password
+            string smtpHost = "smtp.gmail.com";
+            int smtpPort = 25;
+
+            string emailTo = "thamasha@northshore.edu.lk";
+            string subject = "Stores Notification";
+            string body = "This is an ERP test <br/> " + prox.Name_Item + " sold out";
+
+            Project_MVC5.Models.EmailService newService = new Models.EmailService();
+
+            bool kq = newService.Send(smtpUserName, smtpPassword, smtpHost, smtpPort, emailTo, subject, body);
+
+
+        }
 
     }
 }
