@@ -207,6 +207,7 @@
     <Compile Include="Controllers\Sales_SalesOrderController.cs" />
     <Compile Include="Controllers\SendMailController.cs" />
     <Compile Include="Controllers\Stock_AddItemController.cs" />
+    <Compile Include="Controllers\Stock_SearchItemController.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
     <Compile Include="Controllers\tb_SalesController.cs" />
     <Compile Include="Controllers\Test_reportController.cs" />
@@ -519,6 +520,7 @@
     <Content Include="Views\HR_Customers\SearchCustomer.cshtml" />
     <Content Include="Views\HR_Employee\SearchEmployee.cshtml" />
     <Content Include="Views\HR_Employee\AddEmployee.cshtml" />
+    <Content Include="Views\Stock_SearchItem\SearchItem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
