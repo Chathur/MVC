@@ -1,6 +1,7 @@
 ﻿using Project_MVC5.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -9,40 +10,35 @@ namespace Project_MVC5.Controllers
 {
     public class PurchaseGRNController : Controller
     {
+        static string name = null;
         WICKRAMA_STORESEntities db = new WICKRAMA_STORESEntities();
         // GET: PurchaseGRN
+        
         public ActionResult Index()
         {
             return View();
         }
         public ActionResult ViewPurchaseGRN()
         {
-            return View(db.ITEMS.OrderByDescending(p => p.StockId).ToList());
+            ViewBag.products = new SelectList(db.ITEMS, "Name_Item", "Name_Item");
+            ViewBag.suppliers = new SelectList(db.tb_Supplier, "Name_Supplier", "Name_Supplier");
+            return View(db.ITEMS.Where(p=>p.Name_Item==name).OrderByDescending(p => p.StockId).ToList());
         }
-        public ActionResult AddorEdit(ITEMS pr)
+        public ActionResult AddorEdit(ITEMS sup)
         {
-            
-            if (pr.StockId == 0) // Add new
-            {
-                ITEMS pro = new ITEMS();
-                pro.Name_Item = pr.Name_Item;
-                pro.COST_PRICE = pr.COST_PRICE;
-                pro.STOCK_LEVEL = (pr.STOCK_LEVEL+(int)pr.Add_Quantity);
-                db.ITEMS.Add(pro);
-                
-                
-            }
-            else // edit
-            {
-                var update = db.ITEMS.Find(pr.StockId);
-                update.Name_Item = pr.Name_Item;
-                update.COST_PRICE = pr.COST_PRICE;
-                update.STOCK_LEVEL = (pr.STOCK_LEVEL + (int)pr.Add_Quantity);
-                
-                
-            }
-            db.SaveChanges();
 
+         // var item = db.ITEMS.Where(p => p.StockId == sup.StockId).First();
+
+            var update = db.ITEMS.Where(p => p.Name_Item == sup.Name_Item).First();
+            name = sup.Name_Item;
+            update.Add_Quantity = sup.Add_Quantity;
+
+            update.STOCK_LEVEL =  update.STOCK_LEVEL+ (int)sup.Add_Quantity;
+
+            db.Entry(update).State = EntityState.Modified;
+
+
+            db.SaveChanges();
             return RedirectToAction("ViewPurchaseGRN", "PurchaseGRN");
         }
 
