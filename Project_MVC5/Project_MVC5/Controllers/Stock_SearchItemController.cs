@@ -34,11 +34,11 @@ namespace Project_MVC5.Controllers
         }
         public ActionResult AddorEdit(ITEMS sup)
         {
-            var item = db.ITEMS.Where(p => p.Name_Item == p.Name_Item).First();
+            var item = db.ITEMS.Where(p => p.StockId == sup.StockId).First();
 
             
-                var update = db.ITEMS.Find(sup.StockId);
-                update.Name_Item = sup.Name_Item;
+                var update = db.ITEMS.Where(p => p.StockId == sup.StockId).First();
+            update.Name_Item = sup.Name_Item;
                 update.StockCode = sup.StockCode;
                 update.Type = sup.Type;
                 update.MIN_MIN_STOCK_LEVEL = sup.MIN_MIN_STOCK_LEVEL;
