@@ -9,13 +9,12 @@
 
 namespace Project_MVC5.Models
 {
-    using PagedList;
     using System;
     using System.Collections.Generic;
-
+    
     public partial class tb_Employee
     {
-        public int ID_Employee { get; set; }
+        public string ID_Employee { get; set; }
         public string Name_Employee { get; set; }
         public string Address_Employee { get; set; }
         public string Tel_Employee { get; set; }
@@ -24,9 +23,6 @@ namespace Project_MVC5.Models
         public string Salary { get; set; }
         public string Joining_Date { get; set; }
         public string user_id { get; set; }
-        public IPagedList<tb_Employee> SearchResults { get; set; }
-        public string SearchButton { get; set; }
-        public int? Page { get; set; }
         public bool Still_working { get; set; }
     }
 }

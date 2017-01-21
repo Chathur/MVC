@@ -9,10 +9,9 @@
 
 namespace Project_MVC5.Models
 {
-    using PagedList;
     using System;
     using System.Collections.Generic;
-
+    
     public partial class tb_SalesOrder
     {
         public int Sales_order_id { get; set; }
@@ -29,8 +28,5 @@ namespace Project_MVC5.Models
         public string Name_Product { get; set; }
         public double Total { get; set; }
         public string Route { get; set; }
-        public IPagedList<tb_SalesOrder> SearchResults { get; set; }
-        public string SearchButton { get; set; }
-        public int? Page { get; set; }
     }
 }

@@ -22,7 +22,7 @@
           <Key>
             <PropertyRef Name="StockId" />
           </Key>
-          <Property Name="StockId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StockId" Type="int" Nullable="false" />
           <Property Name="StockCode" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Name_Item" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Type_Id" Type="int" />
@@ -391,16 +391,6 @@
           <Property Name="DefaultWeight" Type="float" />
           <Property Name="CategoryTypeId" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
         <EntityType Name="TaxRates">
           <Key>
             <PropertyRef Name="TaxId" />
@@ -442,11 +432,25 @@
           <Property Name="Tel_Customer" Type="nchar" MaxLength="10" />
           <Property Name="Route_Customer" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="tb_employ">
+          <Key>
+            <PropertyRef Name="Emp_ID" />
+          </Key>
+          <Property Name="Emp_ID" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="Role" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="Contact_No" Type="int" Nullable="false" />
+          <Property Name="Email" Type="nchar" MaxLength="50" />
+          <Property Name="Username" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="Passwaord" Type="nchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="tb_Employee">
           <Key>
             <PropertyRef Name="ID_Employee" />
           </Key>
-          <Property Name="ID_Employee" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Employee" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Name_Employee" Type="nchar" MaxLength="50" Nullable="false" />
           <Property Name="Address_Employee" Type="nchar" MaxLength="150" Nullable="false" />
           <Property Name="Tel_Employee" Type="nchar" MaxLength="10" Nullable="false" />
@@ -767,10 +771,10 @@
           <EntitySet Name="sales" EntityType="Self.sales" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sales_order_detail" EntityType="Self.sales_order_detail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SUB_ITEM_TYPES_LOOKUP" EntityType="Self.SUB_ITEM_TYPES_LOOKUP" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TaxRates" EntityType="Self.TaxRates" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_Cart" EntityType="Self.tb_Cart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_Customer" EntityType="Self.tb_Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_employ" EntityType="Self.tb_employ" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_Employee" EntityType="Self.tb_Employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_Sales" EntityType="Self.tb_Sales" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_SalesOrder" EntityType="Self.tb_SalesOrder" Schema="dbo" store:Type="Tables" />
@@ -864,7 +868,7 @@
           <Key>
             <PropertyRef Name="StockId" />
           </Key>
-          <Property Name="StockId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StockId" Type="Int32" Nullable="false" />
           <Property Name="StockCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Name_Item" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Type_Id" Type="Int32" />
@@ -1259,16 +1263,6 @@
           <Property Name="DefaultWeight" Type="Double" />
           <Property Name="CategoryTypeId" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
         <EntityType Name="TaxRates">
           <Key>
             <PropertyRef Name="TaxId" />
@@ -1311,11 +1305,25 @@
           <Property Name="Route_Customer" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Route" Relationship="Self.FK_tb_Customer_tb_Customer" FromRole="tb_Customer" ToRole="Route" />
         </EntityType>
+        <EntityType Name="tb_employ">
+          <Key>
+            <PropertyRef Name="Emp_ID" />
+          </Key>
+          <Property Name="Emp_ID" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Contact_No" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Passwaord" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+        </EntityType>
         <EntityType Name="tb_Employee">
           <Key>
             <PropertyRef Name="ID_Employee" />
           </Key>
-          <Property Name="ID_Employee" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Employee" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Name_Employee" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Address_Employee" Type="String" MaxLength="150" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Tel_Employee" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
@@ -1611,10 +1619,10 @@
           <EntitySet Name="sales" EntityType="Self.sales" />
           <EntitySet Name="sales_order_detail" EntityType="Self.sales_order_detail" />
           <EntitySet Name="SUB_ITEM_TYPES_LOOKUP" EntityType="Self.SUB_ITEM_TYPES_LOOKUP" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="TaxRates" EntityType="Self.TaxRates" />
           <EntitySet Name="tb_Cart" EntityType="Self.tb_Cart" />
           <EntitySet Name="tb_Customer" EntityType="Self.tb_Customer" />
+          <EntitySet Name="tb_employ" EntityType="Self.tb_employ" />
           <EntitySet Name="tb_Employee" EntityType="Self.tb_Employee" />
           <EntitySet Name="tb_Sales" EntityType="Self.tb_Sales" />
           <EntitySet Name="tb_SalesOrder" EntityType="Self.tb_SalesOrder" />
@@ -2107,17 +2115,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.sysdiagrams">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TaxRates">
             <EntityTypeMapping TypeName="WICKRAMA_STORESModel.TaxRates">
               <MappingFragment StoreEntitySet="TaxRates">
@@ -2159,6 +2156,21 @@
                 <ScalarProperty Name="CreditLimit" ColumnName="CreditLimit" />
                 <ScalarProperty Name="Tel_Customer" ColumnName="Tel_Customer" />
                 <ScalarProperty Name="Route_Customer" ColumnName="Route_Customer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_employ">
+            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.tb_employ">
+              <MappingFragment StoreEntitySet="tb_employ">
+                <ScalarProperty Name="Emp_ID" ColumnName="Emp_ID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Contact_No" ColumnName="Contact_No" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Passwaord" ColumnName="Passwaord" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

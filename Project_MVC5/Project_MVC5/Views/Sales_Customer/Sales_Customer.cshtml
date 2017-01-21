@@ -32,7 +32,36 @@
     <input type="submit" value="SAVE" class="btn btn-danger text-center" />
 </form>
 
-
+<table class="table">
+    <tr>
+        <th>Customer name</th>
+        <th>CreditLimit</th>
+        <th>Address</th>
+        <th>Telephone</th>
+        <th>Route</th>
+        <th>Option</th>
+    </tr>
+    <tbody>
+        @if (Model != null)
+        {
+            var list = Model.ToList();
+            
+            for (int i = 0; i == 0; i++)
+            {
+                <tr class="main-data" data-id="@list[i].ID_Customer.">
+                    <td>@list[i].Name_Customer</td>
+                    <td>@list[i].CreditLimit</td>
+                    <td>@list[i].Address_Customer</td>
+                    <td>@list[i].Tel_Customer</td>
+                    <td>@list[i].Route</td>
+                    <td>
+                        <a href="/Sales_Customer/Delete/@list[i].ID_Customer">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
 
 @* using jquery to show data edit and detail product*@
 

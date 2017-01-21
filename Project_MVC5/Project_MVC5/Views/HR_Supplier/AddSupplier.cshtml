@@ -29,3 +29,29 @@
     <input type="submit" value="SAVE" class="btn btn-danger text-center" />
 </form>
 
+<table class="table">
+    <tr>
+        <th>Customer name</th>
+        <th>Store</th>
+        <th>Address</th>
+        <th>Telephone</th>
+        <th>Option</th>
+    </tr>
+    <tbody>
+        @if (Model.SearchResults != null)
+        {
+            foreach (var item in Model.SearchResults)
+            {
+                <tr class="main-data" data-id="@item.ID_Supplier">
+                    <td>@item.Name_Supplier</td>
+                    <td>@item.Store_Supplier</td>
+                    <td>@item.Address_Supplier</td>
+                    <td>@item.Tel_Supplier</td>
+                    <td>
+                        <a href="/Sales_Customer/Delete/@item.ID_Supplier">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
