@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="98a8d1b3c65a45488dd8cddb3ff50907" Name="Diagram1">
+      <Diagram DiagramId="98a8d1b3c65a45488dd8cddb3ff50907" Name="Diagram1" ZoomLevel="74">
         <EntityTypeShape EntityType="WICKRAMA_STORESModel.ITEM_TYPES_LOOKUP" Width="1.5" PointX="10.75" PointY="14.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WICKRAMA_STORESModel.ITEMS" Width="1.5" PointX="12.75" PointY="14.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WICKRAMA_STORESModel.ITEMSS" Width="1.5" PointX="9.75" PointY="1.125" IsExpanded="true" />

@@ -1323,7 +1323,7 @@
           <Key>
             <PropertyRef Name="ID_Employee" />
           </Key>
-          <Property Name="ID_Employee" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ID_Employee" Type="String" Nullable="false" />
           <Property Name="Name_Employee" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Address_Employee" Type="String" MaxLength="150" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Tel_Employee" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />

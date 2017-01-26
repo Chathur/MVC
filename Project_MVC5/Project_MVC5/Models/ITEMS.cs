@@ -9,9 +9,10 @@
 
 namespace Project_MVC5.Models
 {
+    using PagedList;
     using System;
     using System.Collections.Generic;
-    
+
     public partial class ITEMS
     {
         public int StockId { get; set; }
@@ -27,5 +28,8 @@ namespace Project_MVC5.Models
         public double Retail_Margin { get; set; }
         public double Trade_Margin { get; set; }
         public Nullable<double> Add_Quantity { get; set; }
+        public IPagedList<ITEMS> SearchResults { get; set; }
+        public string SearchButton { get; set; }
+        public int? Page { get; set; }
     }
 }

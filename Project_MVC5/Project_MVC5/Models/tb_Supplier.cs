@@ -9,9 +9,10 @@
 
 namespace Project_MVC5.Models
 {
+    using PagedList;
     using System;
     using System.Collections.Generic;
-    
+
     public partial class tb_Supplier
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -41,7 +42,10 @@ namespace Project_MVC5.Models
         public string NOTES { get; set; }
         public Nullable<decimal> CreditLimit { get; set; }
         public Nullable<int> PaymentTermsId { get; set; }
-    
+        public IPagedList<tb_Supplier> SearchResults { get; set; }
+        public string SearchButton { get; set; }
+        public int? Page { get; set; }
+
         public virtual PaymentTerms PaymentTerms { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Purchases> Purchases { get; set; }

@@ -9,9 +9,10 @@
 
 namespace Project_MVC5.Models
 {
+    using PagedList;
     using System;
     using System.Collections.Generic;
-    
+
     public partial class tb_Customer
     {
         public int ID_Customer { get; set; }
@@ -23,5 +24,8 @@ namespace Project_MVC5.Models
         public int Route_Customer { get; set; }
     
         public virtual Route Route { get; set; }
+        public IPagedList<tb_Customer> SearchResults { get; set; }
+        public string SearchButton { get; set; }
+        public int? Page { get; set; }
     }
 }
