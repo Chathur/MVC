@@ -35,7 +35,10 @@ namespace Project_MVC5.Controllers
                 
                 Name_Product = p.Name_Product,
                 Quantity = p.Quantity,
-                Price=p.Price,
+                Price = p.Price,
+                Bill_No = p.Bill_No,
+                Date = p.Date,
+                Customer = p.Customer
 
                 
             }).ToList());
