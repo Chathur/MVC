@@ -12,12 +12,16 @@ namespace Project_MVC5.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class sysdiagrams
+    public partial class tb_employ
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public int Emp_ID { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Role { get; set; }
+        public string Address { get; set; }
+        public int Contact_No { get; set; }
+        public string Email { get; set; }
+        public string Username { get; set; }
+        public string Passwaord { get; set; }
     }
 }

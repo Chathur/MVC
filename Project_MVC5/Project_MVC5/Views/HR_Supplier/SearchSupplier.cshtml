@@ -4,7 +4,7 @@
 @{
     /////////////////////////////////////////
     //////////////////////////////////////// Check delete
-    ViewBag.Title = "Supplier";
+    ViewBag.Title = "Suppliers";
     Layout = "~/Views/Shared/_SalesLayout.cshtml";
 
 }
@@ -22,7 +22,7 @@
 
                     <div class="form-group-sm form-inline form-control-static">
                         <label class="control-label col-md-push-12">Supplier Name</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="text" class="form-control col-md-push-12 bg-gray-light" name="Name_Supplier" id="Name_Supplier" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="text" class="form-control col-md-push-12 bg-gray-light" name="Name_Supplier" id="Name_Supplier"  />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </div>
                 </div>
                 <div class="form-horizontal">
@@ -47,21 +47,21 @@
 
                 </tr>
                 <tbody>
+                 
+                     @if (Model.SearchResults != null)
+                   {
+                       foreach (var item in Model.SearchResults)
+                       {
+                        <tr class="main-data" >
 
-                    @if (Model.SearchResults != null)
-                    {
-                        foreach (var item in Model.SearchResults)
-                        {
-                            <tr class="main-data">
+                            <td>@item.Name_Supplier</td>
+                            <td>@item.Address_Supplier</td>
+                            <td>@item.Store_Supplier</td>
+                            <td>@item.Tel_Supplier</td>
 
-                                <td>@item.Name_Supplier</td>
-                                <td>@item.Address_Supplier</td>
-                                <td>@item.Store_Supplier</td>
-                                <td>@item.Tel_Supplier</td>
-
-                            </tr>
-                        }
-                    }
+                        </tr>
+                       }
+                   }
 
 
 
@@ -72,6 +72,8 @@
         </div>
     </div>
 </section>
+
+
 
 
 

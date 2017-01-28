@@ -45,6 +45,7 @@ namespace Project_MVC5.Models
         public IPagedList<tb_Supplier> SearchResults { get; set; }
         public string SearchButton { get; set; }
         public int? Page { get; set; }
+
         public virtual PaymentTerms PaymentTerms { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Purchases> Purchases { get; set; }
