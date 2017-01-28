@@ -22,10 +22,10 @@ namespace Project_MVC5.Models
         public Nullable<decimal> CreditLimit { get; set; }
         public string Tel_Customer { get; set; }
         public int Route_Customer { get; set; }
-    
-        public virtual Route Route { get; set; }
         public IPagedList<tb_Customer> SearchResults { get; set; }
         public string SearchButton { get; set; }
         public int? Page { get; set; }
+        public virtual Route Route { get; set; }
+
     }
 }

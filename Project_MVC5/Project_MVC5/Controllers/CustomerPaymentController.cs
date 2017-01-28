@@ -14,10 +14,6 @@ namespace ERP.Controllers
         {
             return View();
         }
-        public ActionResult PaymentMethod()
-        {
-            return View();
-        }
 
         // GET: CustomerPayment/Details/5
         public ActionResult Details(int id)
