@@ -199,6 +199,7 @@
     <Compile Include="Controllers\Report_SalesOrderController.cs" />
     <Compile Include="Controllers\Report_StockController.cs" />
     <Compile Include="Controllers\Report_TestController.cs" />
+    <Compile Include="Controllers\Report_TransactionDetailsController.cs" />
     <Compile Include="Controllers\Sales_CustomerController.cs" />
     <Compile Include="Controllers\Sales_DirectSalesController.cs" />
     <Compile Include="Controllers\PurchaseGRNController.cs" />
@@ -402,6 +403,12 @@
       <DependentUpon>Report_test.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\Report_TransactionDetails.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Report_TransactionDetails.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\Report_Valuation.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -543,6 +550,7 @@
     <Content Include="Views\Stock_SearchItem\SearchItem.cshtml" />
     <Content Include="Views\Report_Test\Index.cshtml" />
     <Content Include="Views\Report_Stock\Index.cshtml" />
+    <Content Include="Views\Report_TransactionDetails\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -576,6 +584,10 @@
     <EmbeddedResource Include="Reports\Report_test.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Report_test.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Report_TransactionDetails.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Report_TransactionDetails.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Report_Valuation.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
