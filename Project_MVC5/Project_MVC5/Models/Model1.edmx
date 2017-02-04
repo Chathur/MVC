@@ -35,6 +35,8 @@
           <Property Name="Retail_Margin" Type="float" Nullable="false" />
           <Property Name="Trade_Margin" Type="float" Nullable="false" />
           <Property Name="Add_Quantity" Type="float" />
+          <Property Name="Discount" Type="float" />
+          <Property Name="Free_Items" Type="int" />
         </EntityType>
         <EntityType Name="ITEMSS">
           <Key>
@@ -895,6 +897,8 @@
           <Property Name="Retail_Margin" Type="Double" Nullable="false" />
           <Property Name="Trade_Margin" Type="Double" Nullable="false" />
           <Property Name="Add_Quantity" Type="Double" />
+          <Property Name="Discount" Type="Double" />
+          <Property Name="Free_Items" Type="Int32" />
         </EntityType>
         <EntityType Name="ITEMSS">
           <Key>
@@ -1743,6 +1747,8 @@
           <EntitySetMapping Name="ITEMS">
             <EntityTypeMapping TypeName="WICKRAMA_STORESModel.ITEMS">
               <MappingFragment StoreEntitySet="ITEMS">
+                <ScalarProperty Name="Free_Items" ColumnName="Free_Items" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
                 <ScalarProperty Name="StockId" ColumnName="StockId" />
                 <ScalarProperty Name="StockCode" ColumnName="StockCode" />
                 <ScalarProperty Name="Name_Item" ColumnName="Name_Item" />

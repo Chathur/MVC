@@ -32,6 +32,5 @@ namespace Project_MVC5.Models
         public IPagedList<tb_Sales> SearchResults { get; set; }
         public string SearchButton { get; set; }
         public int? Page { get; set; }
-
     }
 }

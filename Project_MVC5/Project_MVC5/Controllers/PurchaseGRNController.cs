@@ -32,8 +32,12 @@ namespace Project_MVC5.Controllers
             var update = db.ITEMS.Where(p => p.Name_Item == sup.Name_Item).First();
             name = sup.Name_Item;
             update.Add_Quantity = sup.Add_Quantity;
+            update.Free_Items = sup.Free_Items;
+            update.COST_PRICE = sup.COST_PRICE;
+            update.Retail_Margin = sup.Retail_Margin;
+            update.Discount = sup.Discount;
 
-            update.STOCK_LEVEL =  update.STOCK_LEVEL+ (int)sup.Add_Quantity;
+            update.STOCK_LEVEL =  update.STOCK_LEVEL+ (int)sup.Add_Quantity + (int)sup.Free_Items;
 
             db.Entry(update).State = EntityState.Modified;
 

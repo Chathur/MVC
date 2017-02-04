@@ -29,7 +29,6 @@ namespace Project_MVC5.Models
         public string Name_Product { get; set; }
         public double Total { get; set; }
         public string Route { get; set; }
-
         public DateTime? End_Date { get; set; }
         public DateTime? Start_Date { get; set; }
 

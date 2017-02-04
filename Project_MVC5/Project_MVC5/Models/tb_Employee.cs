@@ -34,6 +34,7 @@ namespace Project_MVC5.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Route> Route { get; set; }
+
         public IPagedList<tb_Employee> SearchResults { get; set; }
         public string SearchButton { get; set; }
         public int? Page { get; set; }
