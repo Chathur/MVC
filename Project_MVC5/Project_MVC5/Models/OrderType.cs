@@ -12,9 +12,9 @@ namespace Project_MVC5.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ItemTypes
+    public partial class OrderType
     {
-        public int ItemTypeId { get; set; }
-        public string ItemType { get; set; }
+        public int OrderTypeId { get; set; }
+        public string Description { get; set; }
     }
 }

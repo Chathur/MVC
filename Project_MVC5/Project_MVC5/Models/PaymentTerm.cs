@@ -12,9 +12,19 @@ namespace Project_MVC5.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class OrderTypes
+    public partial class PaymentTerm
     {
-        public int OrderTypeId { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public PaymentTerm()
+        {
+            this.tb_Supplier = new HashSet<tb_Supplier>();
+        }
+    
+        public int PaymentTermsId { get; set; }
         public string Description { get; set; }
+        public int PaymentDays { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tb_Supplier> tb_Supplier { get; set; }
     }
 }

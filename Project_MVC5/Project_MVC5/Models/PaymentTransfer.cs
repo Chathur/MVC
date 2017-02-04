@@ -12,18 +12,10 @@ namespace Project_MVC5.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Permissions
+    public partial class PaymentTransfer
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Permissions()
-        {
-            this.Users = new HashSet<Users>();
-        }
-    
-        public int PermissionId { get; set; }
+        public int PaymentTransfersId { get; set; }
         public string Description { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Users> Users { get; set; }
+        public System.DateTime TransferDate { get; set; }
     }
 }

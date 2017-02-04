@@ -12,20 +12,23 @@ namespace Project_MVC5.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class PaymentAccounts
+    public partial class PaymentMethod
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PaymentAccounts()
+        public PaymentMethod()
         {
-            this.Payments = new HashSet<Payments>();
+            this.Payments = new HashSet<Payment>();
         }
     
-        public int PaymentAccountId { get; set; }
-        public string AccountDescription { get; set; }
+        public int PaymentMethodsId { get; set; }
+        public string PaymentMethod1 { get; set; }
         public bool Active { get; set; }
-        public Nullable<decimal> OpeningBalance { get; set; }
+        public Nullable<int> PaymentMethodType { get; set; }
+        public Nullable<bool> ShowInPOS { get; set; }
+        public Nullable<int> RowOrder { get; set; }
     
+        public virtual PaymentMethodType PaymentMethodType1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Payments> Payments { get; set; }
+        public virtual ICollection<Payment> Payments { get; set; }
     }
 }

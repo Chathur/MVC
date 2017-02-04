@@ -12,13 +12,12 @@ namespace Project_MVC5.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class PaymentCardTransactions
+    public partial class TaxRate
     {
-        public int CardTransactionId { get; set; }
-        public Nullable<int> PaymentGatewayProviderId { get; set; }
-        public string PaymentGatewayTransactionRef { get; set; }
-        public string Comments { get; set; }
-        public Nullable<int> PaymentId { get; set; }
-        public Nullable<System.DateTime> TransactionDate { get; set; }
+        public int TaxId { get; set; }
+        public string TaxCode { get; set; }
+        public double TaxRate1 { get; set; }
+        public string TaxDescription { get; set; }
+        public bool IsDefaultTaxCode { get; set; }
     }
 }

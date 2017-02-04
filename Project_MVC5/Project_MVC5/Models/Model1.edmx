@@ -22,7 +22,7 @@
           <Key>
             <PropertyRef Name="StockId" />
           </Key>
-          <Property Name="StockId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StockId" Type="int" Nullable="false" />
           <Property Name="StockCode" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Name_Item" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Type_Id" Type="int" />
@@ -446,7 +446,7 @@
           <Key>
             <PropertyRef Name="ID_Employee" />
           </Key>
-          <Property Name="ID_Employee" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Employee" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Name_Employee" Type="nchar" MaxLength="50" Nullable="false" />
           <Property Name="Address_Employee" Type="nchar" MaxLength="150" Nullable="false" />
           <Property Name="Tel_Employee" Type="nchar" MaxLength="10" Nullable="false" />
@@ -454,7 +454,7 @@
           <Property Name="Job_tile" Type="nchar" MaxLength="50" Nullable="false" />
           <Property Name="Salary" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="Joining_Date" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="user_id" Type="nchar" MaxLength="10" />
+          <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="Still_working" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="tb_Sales">
@@ -695,6 +695,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_tb_Employee_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="tb_Employee" Type="Self.tb_Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tb_Employee">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_UsersPermissions_Permissions">
           <End Role="Permissions" Type="Self.Permissions" Multiplicity="1" />
           <End Role="UsersPermissions" Type="Self.UsersPermissions" Multiplicity="*" />
@@ -829,6 +841,10 @@
             <End Role="Route" EntitySet="Route" />
             <End Role="tb_Customer" EntitySet="tb_Customer" />
           </AssociationSet>
+          <AssociationSet Name="FK_tb_Employee_Users" Association="Self.FK_tb_Employee_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="tb_Employee" EntitySet="tb_Employee" />
+          </AssociationSet>
           <AssociationSet Name="FK_UsersPermissions_Permissions" Association="Self.FK_UsersPermissions_Permissions">
             <End Role="Permissions" EntitySet="Permissions" />
             <End Role="UsersPermissions" EntitySet="UsersPermissions" />
@@ -864,7 +880,7 @@
           <Key>
             <PropertyRef Name="StockId" />
           </Key>
-          <Property Name="StockId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StockId" Type="Int32" Nullable="false" />
           <Property Name="StockCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Name_Item" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Type_Id" Type="Int32" />
@@ -897,15 +913,15 @@
           <Property Name="Trade_Margin" Type="Double" />
           <Property Name="ItemTypeId" Type="Int32" Nullable="false" />
           <Property Name="Add_Quantity" Type="Double" />
-          <NavigationProperty Name="ProductInfo" Relationship="Self.FK_ProductInfo_ITEMS" FromRole="ITEMSS" ToRole="ProductInfo" />
+          <NavigationProperty Name="ProductInfoes" Relationship="Self.FK_ProductInfo_ITEMS" FromRole="ITEMSS" ToRole="ProductInfo" />
           <NavigationProperty Name="ProductsAllocatedToOrders" Relationship="Self.FK_ProductsAllocatedToOrders_ITEMS" FromRole="ITEMSS" ToRole="ProductsAllocatedToOrders" />
         </EntityType>
-        <EntityType Name="ItemTypes">
+        <EntityType Name="ItemType">
           <Key>
             <PropertyRef Name="ItemTypeId" />
           </Key>
           <Property Name="ItemTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ItemType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ItemType1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityType Name="Job">
           <Key>
@@ -942,7 +958,7 @@
           <Property Name="OrderElementStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ItemOrder" Type="Int32" />
         </EntityType>
-        <EntityType Name="OrderPayments">
+        <EntityType Name="OrderPayment">
           <Key>
             <PropertyRef Name="OrderPaymentsId" />
           </Key>
@@ -955,7 +971,7 @@
           <Property Name="DatePaid" Type="DateTime" Precision="0" />
           <Property Name="TakenBy" Type="Int32" />
         </EntityType>
-        <EntityType Name="ORDERS">
+        <EntityType Name="ORDER">
           <Key>
             <PropertyRef Name="ORDER_NO" />
           </Key>
@@ -997,14 +1013,14 @@
           <Property Name="OrderStatusType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="ORDER_STATUS_LOOKUP" Relationship="Self.FK_ORDER_STATUS_LOOKUP_OrderStatusTypeLookup" FromRole="OrderStatusTypeLookup" ToRole="ORDER_STATUS_LOOKUP" />
         </EntityType>
-        <EntityType Name="OrderTypes">
+        <EntityType Name="OrderType">
           <Key>
             <PropertyRef Name="OrderTypeId" />
           </Key>
           <Property Name="OrderTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
-        <EntityType Name="PaymentAccountAccountantTypes">
+        <EntityType Name="PaymentAccountAccountantType">
           <Key>
             <PropertyRef Name="AccountAccountantTypeId" />
           </Key>
@@ -1012,7 +1028,7 @@
           <Property Name="AccountantDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="PaymentAccountHumanTypes" Relationship="Self.FK_PaymentAccountHumanTypes_PaymentAccountAccountantTypes" FromRole="PaymentAccountAccountantTypes" ToRole="PaymentAccountHumanTypes" />
         </EntityType>
-        <EntityType Name="PaymentAccountHumanTypes">
+        <EntityType Name="PaymentAccountHumanType">
           <Key>
             <PropertyRef Name="AccountHumanTypeId" />
           </Key>
@@ -1021,9 +1037,9 @@
           <Property Name="AccountantAccountType" Type="Int32" />
           <Property Name="IsPhysicalAccount" Type="Boolean" />
           <Property Name="ReadOnly" Type="Boolean" />
-          <NavigationProperty Name="PaymentAccountAccountantTypes" Relationship="Self.FK_PaymentAccountHumanTypes_PaymentAccountAccountantTypes" FromRole="PaymentAccountHumanTypes" ToRole="PaymentAccountAccountantTypes" />
+          <NavigationProperty Name="PaymentAccountAccountantType" Relationship="Self.FK_PaymentAccountHumanTypes_PaymentAccountAccountantTypes" FromRole="PaymentAccountHumanTypes" ToRole="PaymentAccountAccountantTypes" />
         </EntityType>
-        <EntityType Name="PaymentAccounts">
+        <EntityType Name="PaymentAccount">
           <Key>
             <PropertyRef Name="PaymentAccountId" />
           </Key>
@@ -1033,7 +1049,7 @@
           <Property Name="OpeningBalance" Type="Decimal" Precision="19" Scale="4" />
           <NavigationProperty Name="Payments" Relationship="Self.FK_Payments_PaymentAccounts" FromRole="PaymentAccounts" ToRole="Payments" />
         </EntityType>
-        <EntityType Name="PaymentCardTransactions">
+        <EntityType Name="PaymentCardTransaction">
           <Key>
             <PropertyRef Name="CardTransactionId" />
           </Key>
@@ -1044,20 +1060,20 @@
           <Property Name="PaymentId" Type="Int32" />
           <Property Name="TransactionDate" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityType Name="PaymentMethods">
+        <EntityType Name="PaymentMethod">
           <Key>
             <PropertyRef Name="PaymentMethodsId" />
           </Key>
           <Property Name="PaymentMethodsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PaymentMethod" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PaymentMethod1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Active" Type="Boolean" Nullable="false" />
           <Property Name="PaymentMethodType" Type="Int32" />
           <Property Name="ShowInPOS" Type="Boolean" />
           <Property Name="RowOrder" Type="Int32" />
-          <NavigationProperty Name="PaymentMethodTypes" Relationship="Self.FK_PaymentMethods_PaymentMethodTypes" FromRole="PaymentMethods" ToRole="PaymentMethodTypes" />
+          <NavigationProperty Name="PaymentMethodType1" Relationship="Self.FK_PaymentMethods_PaymentMethodTypes" FromRole="PaymentMethods" ToRole="PaymentMethodTypes" />
           <NavigationProperty Name="Payments" Relationship="Self.FK_Payments_PaymentMethods" FromRole="PaymentMethods" ToRole="Payments" />
         </EntityType>
-        <EntityType Name="PaymentMethodTypes">
+        <EntityType Name="PaymentMethodType">
           <Key>
             <PropertyRef Name="PaymentMethodTypeId" />
           </Key>
@@ -1065,7 +1081,7 @@
           <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="PaymentMethods" Relationship="Self.FK_PaymentMethods_PaymentMethodTypes" FromRole="PaymentMethodTypes" ToRole="PaymentMethods" />
         </EntityType>
-        <EntityType Name="Payments">
+        <EntityType Name="Payment">
           <Key>
             <PropertyRef Name="PaymentId" />
           </Key>
@@ -1082,11 +1098,11 @@
           <Property Name="Comments" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="MoneyIn" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="MoneyOut" Type="Decimal" Precision="19" Scale="4" />
-          <NavigationProperty Name="PaymentAccounts" Relationship="Self.FK_Payments_PaymentAccounts" FromRole="Payments" ToRole="PaymentAccounts" />
-          <NavigationProperty Name="PaymentMethods" Relationship="Self.FK_Payments_PaymentMethods" FromRole="Payments" ToRole="PaymentMethods" />
-          <NavigationProperty Name="PaymentTypes" Relationship="Self.FK_Payments_PaymentTypes" FromRole="Payments" ToRole="PaymentTypes" />
+          <NavigationProperty Name="PaymentAccount" Relationship="Self.FK_Payments_PaymentAccounts" FromRole="Payments" ToRole="PaymentAccounts" />
+          <NavigationProperty Name="PaymentMethod" Relationship="Self.FK_Payments_PaymentMethods" FromRole="Payments" ToRole="PaymentMethods" />
+          <NavigationProperty Name="PaymentType" Relationship="Self.FK_Payments_PaymentTypes" FromRole="Payments" ToRole="PaymentTypes" />
         </EntityType>
-        <EntityType Name="PaymentsSagePayCardTypes">
+        <EntityType Name="PaymentsSagePayCardType">
           <Key>
             <PropertyRef Name="CardTypeId" />
           </Key>
@@ -1094,7 +1110,7 @@
           <Property Name="CardTypeMnemonic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CardTypeDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="PaymentTerms">
+        <EntityType Name="PaymentTerm">
           <Key>
             <PropertyRef Name="PaymentTermsId" />
           </Key>
@@ -1103,7 +1119,7 @@
           <Property Name="PaymentDays" Type="Int32" Nullable="false" />
           <NavigationProperty Name="tb_Supplier" Relationship="Self.FK_VENDORS_PaymentTerms" FromRole="PaymentTerms" ToRole="tb_Supplier" />
         </EntityType>
-        <EntityType Name="PaymentTransfers">
+        <EntityType Name="PaymentTransfer">
           <Key>
             <PropertyRef Name="PaymentTransfersId" />
           </Key>
@@ -1111,7 +1127,7 @@
           <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TransferDate" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
-        <EntityType Name="PaymentTypes">
+        <EntityType Name="PaymentType">
           <Key>
             <PropertyRef Name="PaymentTypeId" />
           </Key>
@@ -1119,7 +1135,7 @@
           <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Payments" Relationship="Self.FK_Payments_PaymentTypes" FromRole="PaymentTypes" ToRole="Payments" />
         </EntityType>
-        <EntityType Name="Permissions">
+        <EntityType Name="Permission">
           <Key>
             <PropertyRef Name="PermissionId" />
           </Key>
@@ -1137,14 +1153,14 @@
           <Property Name="SKU" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ITEMSS" Relationship="Self.FK_ProductInfo_ITEMS" FromRole="ProductInfo" ToRole="ITEMSS" />
         </EntityType>
-        <EntityType Name="ProductLocations">
+        <EntityType Name="ProductLocation">
           <Key>
             <PropertyRef Name="LocationId" />
           </Key>
           <Property Name="LocationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
-        <EntityType Name="ProductsAllocatedToOrders">
+        <EntityType Name="ProductsAllocatedToOrder">
           <Key>
             <PropertyRef Name="Sku" />
             <PropertyRef Name="OrderDetailsId" />
@@ -1154,7 +1170,7 @@
           <Property Name="QtyAllocated" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ITEMSS" Relationship="Self.FK_ProductsAllocatedToOrders_ITEMS" FromRole="ProductsAllocatedToOrders" ToRole="ITEMSS" />
         </EntityType>
-        <EntityType Name="PurchaseDetails">
+        <EntityType Name="PurchaseDetail">
           <Key>
             <PropertyRef Name="PurchaseDetailsId" />
           </Key>
@@ -1169,9 +1185,9 @@
           <Property Name="VatRate" Type="Double" />
           <Property Name="VatId" Type="Int32" />
           <Property Name="Received" Type="Boolean" />
-          <NavigationProperty Name="Purchases" Relationship="Self.FK_PurchaseDetails_Purchases" FromRole="PurchaseDetails" ToRole="Purchases" />
+          <NavigationProperty Name="Purchase" Relationship="Self.FK_PurchaseDetails_Purchases" FromRole="PurchaseDetails" ToRole="Purchases" />
         </EntityType>
-        <EntityType Name="Purchases">
+        <EntityType Name="Purchase">
           <Key>
             <PropertyRef Name="PurchaseId" />
           </Key>
@@ -1195,11 +1211,11 @@
           <Property Name="Tax" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="NotesToSupplier" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="PurchaseDetails" Relationship="Self.FK_PurchaseDetails_Purchases" FromRole="Purchases" ToRole="PurchaseDetails" />
-          <NavigationProperty Name="PurchaseStatus" Relationship="Self.FK_Purchases_PurchaseStatus" FromRole="Purchases" ToRole="PurchaseStatus" />
-          <NavigationProperty Name="PurchaseTypes" Relationship="Self.FK_Purchases_PurchaseTypes" FromRole="Purchases" ToRole="PurchaseTypes" />
+          <NavigationProperty Name="PurchaseStatu" Relationship="Self.FK_Purchases_PurchaseStatus" FromRole="Purchases" ToRole="PurchaseStatus" />
+          <NavigationProperty Name="PurchaseType" Relationship="Self.FK_Purchases_PurchaseTypes" FromRole="Purchases" ToRole="PurchaseTypes" />
           <NavigationProperty Name="tb_Supplier" Relationship="Self.FK_Purchases_VENDORS" FromRole="Purchases" ToRole="tb_Supplier" />
         </EntityType>
-        <EntityType Name="PurchaseStatus">
+        <EntityType Name="PurchaseStatu">
           <Key>
             <PropertyRef Name="PurchaseStatusId" />
           </Key>
@@ -1208,7 +1224,7 @@
           <Property Name="ItemOrder" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Purchases" Relationship="Self.FK_Purchases_PurchaseStatus" FromRole="PurchaseStatus" ToRole="Purchases" />
         </EntityType>
-        <EntityType Name="PurchaseTypes">
+        <EntityType Name="PurchaseType">
           <Key>
             <PropertyRef Name="PurchaseTypeId" />
           </Key>
@@ -1224,7 +1240,7 @@
           <Property Name="Route_desc" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="tb_Customer" Relationship="Self.FK_tb_Customer_tb_Customer" FromRole="Route" ToRole="tb_Customer" />
         </EntityType>
-        <EntityType Name="sales">
+        <EntityType Name="sale">
           <Key>
             <PropertyRef Name="sales_id" />
           </Key>
@@ -1259,7 +1275,7 @@
           <Property Name="DefaultWeight" Type="Double" />
           <Property Name="CategoryTypeId" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
+        <EntityType Name="sysdiagram">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
@@ -1269,13 +1285,13 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="TaxRates">
+        <EntityType Name="TaxRate">
           <Key>
             <PropertyRef Name="TaxId" />
           </Key>
           <Property Name="TaxId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TaxCode" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="TaxRate" Type="Double" Nullable="false" />
+          <Property Name="TaxRate1" Type="Double" Nullable="false" />
           <Property Name="TaxDescription" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="IsDefaultTaxCode" Type="Boolean" Nullable="false" />
         </EntityType>
@@ -1315,7 +1331,7 @@
           <Key>
             <PropertyRef Name="ID_Employee" />
           </Key>
-          <Property Name="ID_Employee" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Employee" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Name_Employee" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Address_Employee" Type="String" MaxLength="150" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Tel_Employee" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
@@ -1323,8 +1339,9 @@
           <Property Name="Job_tile" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Salary" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Joining_Date" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="user_id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="Still_working" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_tb_Employee_Users" FromRole="tb_Employee" ToRole="Users" />
         </EntityType>
         <EntityType Name="tb_Sales">
           <Key>
@@ -1389,10 +1406,10 @@
           <Property Name="NOTES" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreditLimit" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="PaymentTermsId" Type="Int32" />
-          <NavigationProperty Name="PaymentTerms" Relationship="Self.FK_VENDORS_PaymentTerms" FromRole="tb_Supplier" ToRole="PaymentTerms" />
+          <NavigationProperty Name="PaymentTerm" Relationship="Self.FK_VENDORS_PaymentTerms" FromRole="tb_Supplier" ToRole="PaymentTerms" />
           <NavigationProperty Name="Purchases" Relationship="Self.FK_Purchases_VENDORS" FromRole="tb_Supplier" ToRole="Purchases" />
         </EntityType>
-        <EntityType Name="Users">
+        <EntityType Name="User">
           <Key>
             <PropertyRef Name="UserId" />
           </Key>
@@ -1401,6 +1418,7 @@
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Active" Type="Boolean" />
           <Property Name="Employee_id" Type="Int32" />
+          <NavigationProperty Name="tb_Employee" Relationship="Self.FK_tb_Employee_Users" FromRole="Users" ToRole="tb_Employee" />
           <NavigationProperty Name="Permissions" Relationship="Self.UsersPermissions" FromRole="Users" ToRole="Permissions" />
         </EntityType>
         <Association Name="FK_ProductInfo_ITEMS">
@@ -1417,7 +1435,7 @@
         </Association>
         <Association Name="FK_ProductsAllocatedToOrders_ITEMS">
           <End Role="ITEMSS" Type="Self.ITEMSS" Multiplicity="1" />
-          <End Role="ProductsAllocatedToOrders" Type="Self.ProductsAllocatedToOrders" Multiplicity="*" />
+          <End Role="ProductsAllocatedToOrders" Type="Self.ProductsAllocatedToOrder" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ITEMSS">
               <PropertyRef Name="StockId" />
@@ -1440,8 +1458,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PaymentAccountHumanTypes_PaymentAccountAccountantTypes">
-          <End Role="PaymentAccountAccountantTypes" Type="Self.PaymentAccountAccountantTypes" Multiplicity="0..1" />
-          <End Role="PaymentAccountHumanTypes" Type="Self.PaymentAccountHumanTypes" Multiplicity="*" />
+          <End Role="PaymentAccountAccountantTypes" Type="Self.PaymentAccountAccountantType" Multiplicity="0..1" />
+          <End Role="PaymentAccountHumanTypes" Type="Self.PaymentAccountHumanType" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PaymentAccountAccountantTypes">
               <PropertyRef Name="AccountAccountantTypeId" />
@@ -1452,8 +1470,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Payments_PaymentAccounts">
-          <End Role="PaymentAccounts" Type="Self.PaymentAccounts" Multiplicity="1" />
-          <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+          <End Role="PaymentAccounts" Type="Self.PaymentAccount" Multiplicity="1" />
+          <End Role="Payments" Type="Self.Payment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PaymentAccounts">
               <PropertyRef Name="PaymentAccountId" />
@@ -1464,8 +1482,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PaymentMethods_PaymentMethodTypes">
-          <End Role="PaymentMethodTypes" Type="Self.PaymentMethodTypes" Multiplicity="0..1" />
-          <End Role="PaymentMethods" Type="Self.PaymentMethods" Multiplicity="*" />
+          <End Role="PaymentMethodTypes" Type="Self.PaymentMethodType" Multiplicity="0..1" />
+          <End Role="PaymentMethods" Type="Self.PaymentMethod" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PaymentMethodTypes">
               <PropertyRef Name="PaymentMethodTypeId" />
@@ -1476,8 +1494,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Payments_PaymentMethods">
-          <End Role="PaymentMethods" Type="Self.PaymentMethods" Multiplicity="1" />
-          <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+          <End Role="PaymentMethods" Type="Self.PaymentMethod" Multiplicity="1" />
+          <End Role="Payments" Type="Self.Payment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PaymentMethods">
               <PropertyRef Name="PaymentMethodsId" />
@@ -1488,8 +1506,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Payments_PaymentTypes">
-          <End Role="PaymentTypes" Type="Self.PaymentTypes" Multiplicity="0..1" />
-          <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+          <End Role="PaymentTypes" Type="Self.PaymentType" Multiplicity="0..1" />
+          <End Role="Payments" Type="Self.Payment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PaymentTypes">
               <PropertyRef Name="PaymentTypeId" />
@@ -1500,7 +1518,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_VENDORS_PaymentTerms">
-          <End Role="PaymentTerms" Type="Self.PaymentTerms" Multiplicity="0..1" />
+          <End Role="PaymentTerms" Type="Self.PaymentTerm" Multiplicity="0..1" />
           <End Role="tb_Supplier" Type="Self.tb_Supplier" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PaymentTerms">
@@ -1512,8 +1530,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PurchaseDetails_Purchases">
-          <End Role="Purchases" Type="Self.Purchases" Multiplicity="0..1" />
-          <End Role="PurchaseDetails" Type="Self.PurchaseDetails" Multiplicity="*" />
+          <End Role="Purchases" Type="Self.Purchase" Multiplicity="0..1" />
+          <End Role="PurchaseDetails" Type="Self.PurchaseDetail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Purchases">
               <PropertyRef Name="PurchaseId" />
@@ -1524,8 +1542,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Purchases_PurchaseStatus">
-          <End Role="PurchaseStatus" Type="Self.PurchaseStatus" Multiplicity="0..1" />
-          <End Role="Purchases" Type="Self.Purchases" Multiplicity="*" />
+          <End Role="PurchaseStatus" Type="Self.PurchaseStatu" Multiplicity="0..1" />
+          <End Role="Purchases" Type="Self.Purchase" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PurchaseStatus">
               <PropertyRef Name="PurchaseStatusId" />
@@ -1536,8 +1554,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Purchases_PurchaseTypes">
-          <End Role="PurchaseTypes" Type="Self.PurchaseTypes" Multiplicity="0..1" />
-          <End Role="Purchases" Type="Self.Purchases" Multiplicity="*" />
+          <End Role="PurchaseTypes" Type="Self.PurchaseType" Multiplicity="0..1" />
+          <End Role="Purchases" Type="Self.Purchase" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PurchaseTypes">
               <PropertyRef Name="PurchaseTypeId" />
@@ -1549,7 +1567,7 @@
         </Association>
         <Association Name="FK_Purchases_VENDORS">
           <End Role="tb_Supplier" Type="Self.tb_Supplier" Multiplicity="0..1" />
-          <End Role="Purchases" Type="Self.Purchases" Multiplicity="*" />
+          <End Role="Purchases" Type="Self.Purchase" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tb_Supplier">
               <PropertyRef Name="ID_Supplier" />
@@ -1571,65 +1589,77 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_tb_Employee_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="tb_Employee" Type="Self.tb_Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tb_Employee">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="UsersPermissions">
-          <End Role="Permissions" Type="Self.Permissions" Multiplicity="*" />
-          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <End Role="Permissions" Type="Self.Permission" Multiplicity="*" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
         </Association>
         <EntityContainer Name="WICKRAMA_STORESEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ITEM_TYPES_LOOKUP" EntityType="Self.ITEM_TYPES_LOOKUP" />
-          <EntitySet Name="ITEMS" EntityType="Self.ITEMS" />
-          <EntitySet Name="ITEMSS" EntityType="Self.ITEMSS" />
-          <EntitySet Name="ItemTypes" EntityType="Self.ItemTypes" />
-          <EntitySet Name="Job" EntityType="Self.Job" />
+          <EntitySet Name="ITEMS" EntityType="WICKRAMA_STORESModel.ITEMS" />
+          <EntitySet Name="ITEMSSes" EntityType="Self.ITEMSS" />
+          <EntitySet Name="ItemTypes" EntityType="Self.ItemType" />
+          <EntitySet Name="Jobs" EntityType="Self.Job" />
           <EntitySet Name="MANUFACTURER_LOOKUP" EntityType="Self.MANUFACTURER_LOOKUP" />
           <EntitySet Name="ORDER_STATUS_LOOKUP" EntityType="Self.ORDER_STATUS_LOOKUP" />
-          <EntitySet Name="OrderElementsStatusLookup" EntityType="Self.OrderElementsStatusLookup" />
-          <EntitySet Name="OrderPayments" EntityType="Self.OrderPayments" />
-          <EntitySet Name="ORDERS" EntityType="Self.ORDERS" />
-          <EntitySet Name="OrderStatusTypeLookup" EntityType="Self.OrderStatusTypeLookup" />
-          <EntitySet Name="OrderTypes" EntityType="Self.OrderTypes" />
-          <EntitySet Name="PaymentAccountAccountantTypes" EntityType="Self.PaymentAccountAccountantTypes" />
-          <EntitySet Name="PaymentAccountHumanTypes" EntityType="Self.PaymentAccountHumanTypes" />
-          <EntitySet Name="PaymentAccounts" EntityType="Self.PaymentAccounts" />
-          <EntitySet Name="PaymentCardTransactions" EntityType="Self.PaymentCardTransactions" />
-          <EntitySet Name="PaymentMethods" EntityType="Self.PaymentMethods" />
-          <EntitySet Name="PaymentMethodTypes" EntityType="Self.PaymentMethodTypes" />
-          <EntitySet Name="Payments" EntityType="Self.Payments" />
-          <EntitySet Name="PaymentsSagePayCardTypes" EntityType="Self.PaymentsSagePayCardTypes" />
-          <EntitySet Name="PaymentTerms" EntityType="Self.PaymentTerms" />
-          <EntitySet Name="PaymentTransfers" EntityType="Self.PaymentTransfers" />
-          <EntitySet Name="PaymentTypes" EntityType="Self.PaymentTypes" />
-          <EntitySet Name="Permissions" EntityType="Self.Permissions" />
-          <EntitySet Name="ProductInfo" EntityType="Self.ProductInfo" />
-          <EntitySet Name="ProductLocations" EntityType="Self.ProductLocations" />
-          <EntitySet Name="ProductsAllocatedToOrders" EntityType="Self.ProductsAllocatedToOrders" />
-          <EntitySet Name="PurchaseDetails" EntityType="Self.PurchaseDetails" />
-          <EntitySet Name="Purchases" EntityType="Self.Purchases" />
-          <EntitySet Name="PurchaseStatus" EntityType="Self.PurchaseStatus" />
-          <EntitySet Name="PurchaseTypes" EntityType="Self.PurchaseTypes" />
-          <EntitySet Name="Route" EntityType="Self.Route" />
-          <EntitySet Name="sales" EntityType="Self.sales" />
+          <EntitySet Name="OrderElementsStatusLookups" EntityType="Self.OrderElementsStatusLookup" />
+          <EntitySet Name="OrderPayments" EntityType="Self.OrderPayment" />
+          <EntitySet Name="ORDERS" EntityType="Self.ORDER" />
+          <EntitySet Name="OrderStatusTypeLookups" EntityType="Self.OrderStatusTypeLookup" />
+          <EntitySet Name="OrderTypes" EntityType="Self.OrderType" />
+          <EntitySet Name="PaymentAccountAccountantTypes" EntityType="Self.PaymentAccountAccountantType" />
+          <EntitySet Name="PaymentAccountHumanTypes" EntityType="Self.PaymentAccountHumanType" />
+          <EntitySet Name="PaymentAccounts" EntityType="Self.PaymentAccount" />
+          <EntitySet Name="PaymentCardTransactions" EntityType="Self.PaymentCardTransaction" />
+          <EntitySet Name="PaymentMethods" EntityType="Self.PaymentMethod" />
+          <EntitySet Name="PaymentMethodTypes" EntityType="Self.PaymentMethodType" />
+          <EntitySet Name="Payments" EntityType="Self.Payment" />
+          <EntitySet Name="PaymentsSagePayCardTypes" EntityType="Self.PaymentsSagePayCardType" />
+          <EntitySet Name="PaymentTerms" EntityType="Self.PaymentTerm" />
+          <EntitySet Name="PaymentTransfers" EntityType="Self.PaymentTransfer" />
+          <EntitySet Name="PaymentTypes" EntityType="Self.PaymentType" />
+          <EntitySet Name="Permissions" EntityType="Self.Permission" />
+          <EntitySet Name="ProductInfoes" EntityType="Self.ProductInfo" />
+          <EntitySet Name="ProductLocations" EntityType="Self.ProductLocation" />
+          <EntitySet Name="ProductsAllocatedToOrders" EntityType="Self.ProductsAllocatedToOrder" />
+          <EntitySet Name="PurchaseDetails" EntityType="Self.PurchaseDetail" />
+          <EntitySet Name="Purchases" EntityType="Self.Purchase" />
+          <EntitySet Name="PurchaseStatus" EntityType="Self.PurchaseStatu" />
+          <EntitySet Name="PurchaseTypes" EntityType="Self.PurchaseType" />
+          <EntitySet Name="Routes" EntityType="Self.Route" />
+          <EntitySet Name="sales" EntityType="Self.sale" />
           <EntitySet Name="sales_order_detail" EntityType="Self.sales_order_detail" />
           <EntitySet Name="SUB_ITEM_TYPES_LOOKUP" EntityType="Self.SUB_ITEM_TYPES_LOOKUP" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="TaxRates" EntityType="Self.TaxRates" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="TaxRates" EntityType="Self.TaxRate" />
           <EntitySet Name="tb_Cart" EntityType="Self.tb_Cart" />
           <EntitySet Name="tb_Customer" EntityType="Self.tb_Customer" />
           <EntitySet Name="tb_Employee" EntityType="Self.tb_Employee" />
           <EntitySet Name="tb_Sales" EntityType="Self.tb_Sales" />
           <EntitySet Name="tb_SalesOrder" EntityType="Self.tb_SalesOrder" />
           <EntitySet Name="tb_Supplier" EntityType="Self.tb_Supplier" />
-          <EntitySet Name="Users" EntityType="Self.Users" />
+          <EntitySet Name="Users" EntityType="Self.User" />
           <AssociationSet Name="FK_ProductInfo_ITEMS" Association="Self.FK_ProductInfo_ITEMS">
-            <End Role="ITEMSS" EntitySet="ITEMSS" />
-            <End Role="ProductInfo" EntitySet="ProductInfo" />
+            <End Role="ITEMSS" EntitySet="ITEMSSes" />
+            <End Role="ProductInfo" EntitySet="ProductInfoes" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductsAllocatedToOrders_ITEMS" Association="Self.FK_ProductsAllocatedToOrders_ITEMS">
-            <End Role="ITEMSS" EntitySet="ITEMSS" />
+            <End Role="ITEMSS" EntitySet="ITEMSSes" />
             <End Role="ProductsAllocatedToOrders" EntitySet="ProductsAllocatedToOrders" />
           </AssociationSet>
           <AssociationSet Name="FK_ORDER_STATUS_LOOKUP_OrderStatusTypeLookup" Association="Self.FK_ORDER_STATUS_LOOKUP_OrderStatusTypeLookup">
-            <End Role="OrderStatusTypeLookup" EntitySet="OrderStatusTypeLookup" />
+            <End Role="OrderStatusTypeLookup" EntitySet="OrderStatusTypeLookups" />
             <End Role="ORDER_STATUS_LOOKUP" EntitySet="ORDER_STATUS_LOOKUP" />
           </AssociationSet>
           <AssociationSet Name="FK_PaymentAccountHumanTypes_PaymentAccountAccountantTypes" Association="Self.FK_PaymentAccountHumanTypes_PaymentAccountAccountantTypes">
@@ -1673,8 +1703,12 @@
             <End Role="Purchases" EntitySet="Purchases" />
           </AssociationSet>
           <AssociationSet Name="FK_tb_Customer_tb_Customer" Association="Self.FK_tb_Customer_tb_Customer">
-            <End Role="Route" EntitySet="Route" />
+            <End Role="Route" EntitySet="Routes" />
             <End Role="tb_Customer" EntitySet="tb_Customer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_Employee_Users" Association="Self.FK_tb_Employee_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="tb_Employee" EntitySet="tb_Employee" />
           </AssociationSet>
           <AssociationSet Name="UsersPermissions" Association="Self.UsersPermissions">
             <End Role="Permissions" EntitySet="Permissions" />
@@ -1720,7 +1754,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ITEMSS">
+          <EntitySetMapping Name="ITEMSSes">
             <EntityTypeMapping TypeName="WICKRAMA_STORESModel.ITEMSS">
               <MappingFragment StoreEntitySet="ITEMSS">
                 <ScalarProperty Name="StockId" ColumnName="StockId" />
@@ -1742,14 +1776,14 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ItemTypes">
-            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.ItemTypes">
+            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.ItemType">
               <MappingFragment StoreEntitySet="ItemTypes">
                 <ScalarProperty Name="ItemTypeId" ColumnName="ItemTypeId" />
-                <ScalarProperty Name="ItemType" ColumnName="ItemType" />
+                <ScalarProperty Name="ItemType1" ColumnName="ItemType" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Job">
+          <EntitySetMapping Name="Jobs">
             <EntityTypeMapping TypeName="WICKRAMA_STORESModel.Job">
               <MappingFragment StoreEntitySet="Job">
                 <ScalarProperty Name="job_id" ColumnName="job_id" />
@@ -1778,7 +1812,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="OrderElementsStatusLookup">
+          <EntitySetMapping Name="OrderElementsStatusLookups">
             <EntityTypeMapping TypeName="WICKRAMA_STORESModel.OrderElementsStatusLookup">
               <MappingFragment StoreEntitySet="OrderElementsStatusLookup">
                 <ScalarProperty Name="StatusId" ColumnName="StatusId" />
@@ -1788,7 +1822,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OrderPayments">
-            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.OrderPayments">
+            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.OrderPayment">
               <MappingFragment StoreEntitySet="OrderPayments">
                 <ScalarProperty Name="OrderPaymentsId" ColumnName="OrderPaymentsId" />
                 <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
@@ -1802,7 +1836,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ORDERS">
-            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.ORDERS">
+            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.ORDER">
               <MappingFragment StoreEntitySet="ORDERS">
                 <ScalarProperty Name="ORDER_NO" ColumnName="ORDER_NO" />
                 <ScalarProperty Name="CUSTOMER" ColumnName="CUSTOMER" />
@@ -1836,7 +1870,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="OrderStatusTypeLookup">
+          <EntitySetMapping Name="OrderStatusTypeLookups">
             <EntityTypeMapping TypeName="WICKRAMA_STORESModel.OrderStatusTypeLookup">
               <MappingFragment StoreEntitySet="OrderStatusTypeLookup">
                 <ScalarProperty Name="OrderStatusTypeId" ColumnName="OrderStatusTypeId" />
@@ -1845,7 +1879,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OrderTypes">
-            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.OrderTypes">
+            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.OrderType">
               <MappingFragment StoreEntitySet="OrderTypes">
                 <ScalarProperty Name="OrderTypeId" ColumnName="OrderTypeId" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -1853,7 +1887,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PaymentAccountAccountantTypes">
-            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.PaymentAccountAccountantTypes">
+            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.PaymentAccountAccountantType">
               <MappingFragment StoreEntitySet="PaymentAccountAccountantTypes">
                 <ScalarProperty Name="AccountAccountantTypeId" ColumnName="AccountAccountantTypeId" />
                 <ScalarProperty Name="AccountantDescription" ColumnName="AccountantDescription" />
@@ -1861,7 +1895,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PaymentAccountHumanTypes">
-            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.PaymentAccountHumanTypes">
+            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.PaymentAccountHumanType">
               <MappingFragment StoreEntitySet="PaymentAccountHumanTypes">
                 <ScalarProperty Name="AccountHumanTypeId" ColumnName="AccountHumanTypeId" />
                 <ScalarProperty Name="HumanDescription" ColumnName="HumanDescription" />
@@ -1872,7 +1906,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PaymentAccounts">
-            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.PaymentAccounts">
+            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.PaymentAccount">
               <MappingFragment StoreEntitySet="PaymentAccounts">
                 <ScalarProperty Name="PaymentAccountId" ColumnName="PaymentAccountId" />
                 <ScalarProperty Name="AccountDescription" ColumnName="AccountDescription" />
@@ -1882,7 +1916,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PaymentCardTransactions">
-            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.PaymentCardTransactions">
+            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.PaymentCardTransaction">
               <MappingFragment StoreEntitySet="PaymentCardTransactions">
                 <ScalarProperty Name="CardTransactionId" ColumnName="CardTransactionId" />
                 <ScalarProperty Name="PaymentGatewayProviderId" ColumnName="PaymentGatewayProviderId" />
@@ -1894,10 +1928,10 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PaymentMethods">
-            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.PaymentMethods">
+            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.PaymentMethod">
               <MappingFragment StoreEntitySet="PaymentMethods">
                 <ScalarProperty Name="PaymentMethodsId" ColumnName="PaymentMethodsId" />
-                <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
+                <ScalarProperty Name="PaymentMethod1" ColumnName="PaymentMethod" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="PaymentMethodType" ColumnName="PaymentMethodType" />
                 <ScalarProperty Name="ShowInPOS" ColumnName="ShowInPOS" />
@@ -1906,7 +1940,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PaymentMethodTypes">
-            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.PaymentMethodTypes">
+            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.PaymentMethodType">
               <MappingFragment StoreEntitySet="PaymentMethodTypes">
                 <ScalarProperty Name="PaymentMethodTypeId" ColumnName="PaymentMethodTypeId" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -1914,7 +1948,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Payments">
-            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.Payments">
+            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.Payment">
               <MappingFragment StoreEntitySet="Payments">
                 <ScalarProperty Name="PaymentId" ColumnName="PaymentId" />
                 <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
@@ -1933,7 +1967,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PaymentsSagePayCardTypes">
-            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.PaymentsSagePayCardTypes">
+            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.PaymentsSagePayCardType">
               <MappingFragment StoreEntitySet="PaymentsSagePayCardTypes">
                 <ScalarProperty Name="CardTypeId" ColumnName="CardTypeId" />
                 <ScalarProperty Name="CardTypeMnemonic" ColumnName="CardTypeMnemonic" />
@@ -1942,7 +1976,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PaymentTerms">
-            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.PaymentTerms">
+            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.PaymentTerm">
               <MappingFragment StoreEntitySet="PaymentTerms">
                 <ScalarProperty Name="PaymentTermsId" ColumnName="PaymentTermsId" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -1951,7 +1985,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PaymentTransfers">
-            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.PaymentTransfers">
+            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.PaymentTransfer">
               <MappingFragment StoreEntitySet="PaymentTransfers">
                 <ScalarProperty Name="PaymentTransfersId" ColumnName="PaymentTransfersId" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -1960,7 +1994,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PaymentTypes">
-            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.PaymentTypes">
+            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.PaymentType">
               <MappingFragment StoreEntitySet="PaymentTypes">
                 <ScalarProperty Name="PaymentTypeId" ColumnName="PaymentTypeId" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -1968,14 +2002,14 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Permissions">
-            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.Permissions">
+            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.Permission">
               <MappingFragment StoreEntitySet="Permissions">
                 <ScalarProperty Name="PermissionId" ColumnName="PermissionId" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ProductInfo">
+          <EntitySetMapping Name="ProductInfoes">
             <EntityTypeMapping TypeName="WICKRAMA_STORESModel.ProductInfo">
               <MappingFragment StoreEntitySet="ProductInfo">
                 <ScalarProperty Name="ProductInfoId" ColumnName="ProductInfoId" />
@@ -1986,7 +2020,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ProductLocations">
-            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.ProductLocations">
+            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.ProductLocation">
               <MappingFragment StoreEntitySet="ProductLocations">
                 <ScalarProperty Name="LocationId" ColumnName="LocationId" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -1994,7 +2028,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ProductsAllocatedToOrders">
-            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.ProductsAllocatedToOrders">
+            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.ProductsAllocatedToOrder">
               <MappingFragment StoreEntitySet="ProductsAllocatedToOrders">
                 <ScalarProperty Name="Sku" ColumnName="Sku" />
                 <ScalarProperty Name="OrderDetailsId" ColumnName="OrderDetailsId" />
@@ -2003,7 +2037,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PurchaseDetails">
-            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.PurchaseDetails">
+            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.PurchaseDetail">
               <MappingFragment StoreEntitySet="PurchaseDetails">
                 <ScalarProperty Name="PurchaseDetailsId" ColumnName="PurchaseDetailsId" />
                 <ScalarProperty Name="PurchaseId" ColumnName="PurchaseId" />
@@ -2020,7 +2054,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Purchases">
-            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.Purchases">
+            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.Purchase">
               <MappingFragment StoreEntitySet="Purchases">
                 <ScalarProperty Name="PurchaseId" ColumnName="PurchaseId" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
@@ -2045,7 +2079,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PurchaseStatus">
-            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.PurchaseStatus">
+            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.PurchaseStatu">
               <MappingFragment StoreEntitySet="PurchaseStatus">
                 <ScalarProperty Name="PurchaseStatusId" ColumnName="PurchaseStatusId" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -2054,14 +2088,14 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PurchaseTypes">
-            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.PurchaseTypes">
+            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.PurchaseType">
               <MappingFragment StoreEntitySet="PurchaseTypes">
                 <ScalarProperty Name="PurchaseTypeId" ColumnName="PurchaseTypeId" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Route">
+          <EntitySetMapping Name="Routes">
             <EntityTypeMapping TypeName="WICKRAMA_STORESModel.Route">
               <MappingFragment StoreEntitySet="Route">
                 <ScalarProperty Name="Route_id" ColumnName="Route_id" />
@@ -2070,7 +2104,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sales">
-            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.sales">
+            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.sale">
               <MappingFragment StoreEntitySet="sales">
                 <ScalarProperty Name="sales_id" ColumnName="sales_id" />
                 <ScalarProperty Name="sales_order_id" ColumnName="sales_order_id" />
@@ -2108,7 +2142,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.sysdiagrams">
+            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -2119,11 +2153,11 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TaxRates">
-            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.TaxRates">
+            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.TaxRate">
               <MappingFragment StoreEntitySet="TaxRates">
                 <ScalarProperty Name="TaxId" ColumnName="TaxId" />
                 <ScalarProperty Name="TaxCode" ColumnName="TaxCode" />
-                <ScalarProperty Name="TaxRate" ColumnName="TaxRate" />
+                <ScalarProperty Name="TaxRate1" ColumnName="TaxRate" />
                 <ScalarProperty Name="TaxDescription" ColumnName="TaxDescription" />
                 <ScalarProperty Name="IsDefaultTaxCode" ColumnName="IsDefaultTaxCode" />
               </MappingFragment>
@@ -2173,7 +2207,7 @@
                 <ScalarProperty Name="Job_tile" ColumnName="Job_tile" />
                 <ScalarProperty Name="Salary" ColumnName="Salary" />
                 <ScalarProperty Name="Joining_Date" ColumnName="Joining_Date" />
-                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Still_working" ColumnName="Still_working" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2246,7 +2280,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.Users">
+            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.User">
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
@@ -2278,7 +2312,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

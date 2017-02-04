@@ -18,7 +18,7 @@ namespace Project_MVC5.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tb_Supplier()
         {
-            this.Purchases = new HashSet<Purchases>();
+            this.Purchases = new HashSet<Purchase>();
         }
     
         public int ID_Supplier { get; set; }
@@ -42,11 +42,12 @@ namespace Project_MVC5.Models
         public string NOTES { get; set; }
         public Nullable<decimal> CreditLimit { get; set; }
         public Nullable<int> PaymentTermsId { get; set; }
+    
+        public virtual PaymentTerm PaymentTerm { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Purchase> Purchases { get; set; }
         public IPagedList<tb_Supplier> SearchResults { get; set; }
         public string SearchButton { get; set; }
         public int? Page { get; set; }
-        public virtual PaymentTerms PaymentTerms { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Purchases> Purchases { get; set; }
     }
 }

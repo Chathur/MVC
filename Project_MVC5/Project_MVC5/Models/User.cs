@@ -12,18 +12,24 @@ namespace Project_MVC5.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class PaymentTypes
+    public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PaymentTypes()
+        public User()
         {
-            this.Payments = new HashSet<Payments>();
+            this.tb_Employee = new HashSet<tb_Employee>();
+            this.Permissions = new HashSet<Permission>();
         }
     
-        public int PaymentTypeId { get; set; }
-        public string Description { get; set; }
+        public int UserId { get; set; }
+        public string UserName { get; set; }
+        public string Password { get; set; }
+        public Nullable<bool> Active { get; set; }
+        public Nullable<int> Employee_id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Payments> Payments { get; set; }
+        public virtual ICollection<tb_Employee> tb_Employee { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Permission> Permissions { get; set; }
     }
 }

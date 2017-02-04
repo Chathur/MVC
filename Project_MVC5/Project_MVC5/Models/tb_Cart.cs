@@ -29,7 +29,6 @@ namespace Project_MVC5.Models
         public string sales_id { get; set; }
         public string Discount { get; set; }
         public string Code_Product { get; set; }
-
         public IPagedList<tb_Cart> SearchResults { get; set; }
         public string SearchButton { get; set; }
         public int? Page { get; set; }

@@ -12,12 +12,14 @@ namespace Project_MVC5.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ProductsAllocatedToOrders
+    public partial class PaymentAccountHumanType
     {
-        public int Sku { get; set; }
-        public int OrderDetailsId { get; set; }
-        public int QtyAllocated { get; set; }
+        public int AccountHumanTypeId { get; set; }
+        public string HumanDescription { get; set; }
+        public Nullable<int> AccountantAccountType { get; set; }
+        public Nullable<bool> IsPhysicalAccount { get; set; }
+        public Nullable<bool> ReadOnly { get; set; }
     
-        public virtual ITEMSS ITEMSS { get; set; }
+        public virtual PaymentAccountAccountantType PaymentAccountAccountantType { get; set; }
     }
 }

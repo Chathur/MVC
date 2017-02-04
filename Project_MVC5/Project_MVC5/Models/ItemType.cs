@@ -12,9 +12,9 @@ namespace Project_MVC5.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ProductLocations
+    public partial class ItemType
     {
-        public int LocationId { get; set; }
-        public string Description { get; set; }
+        public int ItemTypeId { get; set; }
+        public string ItemType1 { get; set; }
     }
 }

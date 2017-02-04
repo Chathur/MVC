@@ -12,10 +12,13 @@ namespace Project_MVC5.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class PaymentsSagePayCardTypes
+    public partial class PaymentCardTransaction
     {
-        public int CardTypeId { get; set; }
-        public string CardTypeMnemonic { get; set; }
-        public string CardTypeDescription { get; set; }
+        public int CardTransactionId { get; set; }
+        public Nullable<int> PaymentGatewayProviderId { get; set; }
+        public string PaymentGatewayTransactionRef { get; set; }
+        public string Comments { get; set; }
+        public Nullable<int> PaymentId { get; set; }
+        public Nullable<System.DateTime> TransactionDate { get; set; }
     }
 }
