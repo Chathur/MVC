@@ -190,6 +190,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Add_RoutesController.cs" />
     <Compile Include="Controllers\CustomerPaymentController.cs" />
     <Compile Include="Controllers\HR_CustomersController.cs" />
     <Compile Include="Controllers\HR_EmployeeController.cs" />
@@ -551,6 +552,8 @@
     <Content Include="Views\Report_Test\Index.cshtml" />
     <Content Include="Views\Report_Stock\Index.cshtml" />
     <Content Include="Views\Report_TransactionDetails\Index.cshtml" />
+    <Content Include="Views\Add_Routes\Index.cshtml" />
+    <Content Include="Views\Add_Routes\AddRoute.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

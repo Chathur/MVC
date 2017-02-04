@@ -57,6 +57,11 @@ namespace Project_MVC5.Controllers
                 pro.Address_Employee = sup.Address_Employee;
                 pro.Job_tile = sup.Job_tile;
                 pro.Tel_Employee = sup.Tel_Employee;
+                pro.email = sup.email;
+                pro.Salary = sup.Salary;
+                pro.Joining_Date = sup.Joining_Date;
+                pro.Still_working = sup.Still_working;
+
                 db.tb_Employee.Add(pro);
 
 
@@ -68,6 +73,10 @@ namespace Project_MVC5.Controllers
                 update.Address_Employee = sup.Address_Employee;
                 update.Job_tile = sup.Job_tile;
                 update.Tel_Employee = sup.Tel_Employee;
+                update.email = sup.email;
+                update.Salary = sup.Salary;
+                update.Joining_Date = sup.Joining_Date;
+                update.Still_working = sup.Still_working;
 
             }
             db.SaveChanges();

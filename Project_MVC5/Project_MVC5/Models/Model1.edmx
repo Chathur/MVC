@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="WICKRAMA_STORESModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="WICKRAMA_STORESModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ITEM_TYPES_LOOKUP">
           <Key>
             <PropertyRef Name="TYPE_ID" />
@@ -354,6 +354,9 @@
             <PropertyRef Name="Route_id" />
           </Key>
           <Property Name="Route_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="City" Type="nvarchar" MaxLength="100" />
+          <Property Name="Emoloyee" Type="int" />
           <Property Name="Route_desc" Type="nchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="sales">
@@ -683,6 +686,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Route_tb_Employee">
+          <End Role="tb_Employee" Type="Self.tb_Employee" Multiplicity="0..1" />
+          <End Role="Route" Type="Self.Route" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Employee">
+              <PropertyRef Name="ID_Employee" />
+            </Principal>
+            <Dependent Role="Route">
+              <PropertyRef Name="Emoloyee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tb_Customer_tb_Customer">
           <End Role="Route" Type="Self.Route" Multiplicity="1" />
           <End Role="tb_Customer" Type="Self.tb_Customer" Multiplicity="*" />
@@ -825,6 +840,10 @@
             <End Role="tb_Supplier" EntitySet="tb_Supplier" />
             <End Role="Purchases" EntitySet="Purchases" />
           </AssociationSet>
+          <AssociationSet Name="FK_Route_tb_Employee" Association="Self.FK_Route_tb_Employee">
+            <End Role="tb_Employee" EntitySet="tb_Employee" />
+            <End Role="Route" EntitySet="Route" />
+          </AssociationSet>
           <AssociationSet Name="FK_tb_Customer_tb_Customer" Association="Self.FK_tb_Customer_tb_Customer">
             <End Role="Route" EntitySet="Route" />
             <End Role="tb_Customer" EntitySet="tb_Customer" />
@@ -842,8 +861,7 @@
             <End Role="tb_Supplier" EntitySet="tb_Supplier" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="WICKRAMA_STORESModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1223,6 +1241,10 @@
           <Property Name="Route_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Route_desc" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="tb_Customer" Relationship="Self.FK_tb_Customer_tb_Customer" FromRole="Route" ToRole="tb_Customer" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Emoloyee" Type="Int32" />
+          <NavigationProperty Name="tb_Employee" Relationship="WICKRAMA_STORESModel.FK_Route_tb_Employee" FromRole="Route" ToRole="tb_Employee" />
         </EntityType>
         <EntityType Name="sales">
           <Key>
@@ -1325,6 +1347,7 @@
           <Property Name="Joining_Date" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="user_id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="Still_working" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Route" Relationship="WICKRAMA_STORESModel.FK_Route_tb_Employee" FromRole="tb_Employee" ToRole="Route" />
         </EntityType>
         <EntityType Name="tb_Sales">
           <Key>
@@ -1680,7 +1703,23 @@
             <End Role="Permissions" EntitySet="Permissions" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
+          <AssociationSet Name="FK_Route_tb_Employee" Association="WICKRAMA_STORESModel.FK_Route_tb_Employee">
+            <End Role="tb_Employee" EntitySet="tb_Employee" />
+            <End Role="Route" EntitySet="Route" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_Route_tb_Employee">
+          <End Type="WICKRAMA_STORESModel.tb_Employee" Role="tb_Employee" Multiplicity="0..1" />
+          <End Type="WICKRAMA_STORESModel.Route" Role="Route" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Employee">
+              <PropertyRef Name="ID_Employee" />
+            </Principal>
+            <Dependent Role="Route">
+              <PropertyRef Name="Emoloyee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2064,6 +2103,9 @@
           <EntitySetMapping Name="Route">
             <EntityTypeMapping TypeName="WICKRAMA_STORESModel.Route">
               <MappingFragment StoreEntitySet="Route">
+                <ScalarProperty Name="Emoloyee" ColumnName="Emoloyee" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Route_id" ColumnName="Route_id" />
                 <ScalarProperty Name="Route_desc" ColumnName="Route_desc" />
               </MappingFragment>

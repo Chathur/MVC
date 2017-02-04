@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="00066349e66b482491c8359862c65400" Name="Diagram1">
+      <Diagram DiagramId="00066349e66b482491c8359862c65400" Name="Diagram1" ZoomLevel="34">
         <EntityTypeShape EntityType="WICKRAMA_STORESModel.ITEM_TYPES_LOOKUP" Width="1.5" PointX="10.75" PointY="14.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WICKRAMA_STORESModel.ITEMS" Width="1.5" PointX="12.75" PointY="14.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WICKRAMA_STORESModel.ITEMSS" Width="1.5" PointX="9.75" PointY="1.125" IsExpanded="true" />
@@ -64,6 +64,7 @@
         <AssociationConnector Association="WICKRAMA_STORESModel.FK_Purchases_VENDORS" ManuallyRouted="false" />
         <AssociationConnector Association="WICKRAMA_STORESModel.FK_tb_Customer_tb_Customer" ManuallyRouted="false" />
         <AssociationConnector Association="WICKRAMA_STORESModel.UsersPermissions" ManuallyRouted="false" />
+        <AssociationConnector Association="WICKRAMA_STORESModel.FK_Route_tb_Employee" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
