@@ -11,7 +11,7 @@
 
         <div class="box-body">
 
-            <form class="form-horizontal" action="/Stock_BinCard/SearchItem/" method="post">
+            <form class="form-horizontal" action="/Sales_Returns/AddorEdit/" method="post">
 
                 <div class="form-horizontal form-control-static">
 
@@ -22,13 +22,13 @@
 
                     <div class="form-group-sm form-inline form-control-static">
                             <label class="control-label col-md-1">Item Name</label>
-                            @Html.DropDownList("Name_Product", (ViewBag.products as SelectList), "-- Please Select an Item  --", new { style = "width:250px", @class = "form-control col-md-12 " })
+                            @Html.DropDownList("Name_Item", (ViewBag.products as SelectList), "-- Please Select an Item  --", new { style = "width:250px", @class = "form-control col-md-12 " })
                            
                             <label class="control-label col-md-1">Quantity</label>
                             <input type="text" class="form-control col-md-push-12 " name="Quantity" id="Quantity" />
-
+                        &nbsp;&nbsp;&nbsp;&nbsp;
                             <label class="control-label col-md-push-12">Date</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="text" class="form-control col-md-push-12 bg-gray-light" name="Date_Returned" id="Date_Returned"  />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="text" class="form-control col-md-push-12 " name="Date_Returned" id="Date_Returned"  />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
                     </div>
 
@@ -39,3 +39,15 @@
         </div>
     </div>
     </section>
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/bootstrap-datepicker.js"></script>
+<script>
+        //Date picker
+    $('#Date_Returned').datepicker({
+            autoclose: true
+        });
+
+
+</script>
