@@ -31,6 +31,7 @@ namespace Project_MVC5.Models
         public string Joining_Date { get; set; }
         public Nullable<int> user_id { get; set; }
         public bool Still_working { get; set; }
+
         public IPagedList<tb_Employee> SearchResults { get; set; }
         public string SearchButton { get; set; }
         public int? Page { get; set; }

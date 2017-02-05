@@ -16,6 +16,17 @@ namespace Project_MVC5.Controllers
             ViewBag.products = new SelectList(db.ITEMS, "Name_Item", "Name_Item");
             return View();
         }
+        public ActionResult AddorEdit(tb_SalesReturns model)
+        {
+            tb_SalesReturns toDB = new tb_SalesReturns();
+            toDB.Bill_No = model.Bill_No;
+            toDB.Name_Item = model.Name_Item;
+            toDB.Quantity = model.Quantity;
+
+            db.tb_SalesReturns.Add(toDB);
+
+            return RedirectToAction("Index", "Sales_Returns");
+        }
 
     }
 }

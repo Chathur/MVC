@@ -19,9 +19,10 @@ namespace Project_MVC5.Models
         public int Bill_No { get; set; }
         public string Name_Item { get; set; }
         public int Quantity { get; set; }
+        public Nullable<System.DateTime> Date_Returned { get; set; }
+
         public IPagedList<tb_PurchaseReturns> SearchResults { get; set; }
         public string SearchButton { get; set; }
         public int? Page { get; set; }
-
     }
 }

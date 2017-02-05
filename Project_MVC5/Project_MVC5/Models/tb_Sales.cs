@@ -29,6 +29,7 @@ namespace Project_MVC5.Models
         public int Bill_No { get; set; }
         public string Customer { get; set; }
         public string Route { get; set; }
+
         public IPagedList<tb_Sales> SearchResults { get; set; }
         public string SearchButton { get; set; }
         public int? Page { get; set; }

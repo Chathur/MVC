@@ -30,6 +30,7 @@ namespace Project_MVC5.Models
         public Nullable<double> Add_Quantity { get; set; }
         public Nullable<double> Discount { get; set; }
         public Nullable<int> Free_Items { get; set; }
+
         public IPagedList<ITEMS> SearchResults { get; set; }
         public string SearchButton { get; set; }
         public int? Page { get; set; }

@@ -42,6 +42,7 @@ namespace Project_MVC5.Models
         public string NOTES { get; set; }
         public Nullable<decimal> CreditLimit { get; set; }
         public Nullable<int> PaymentTermsId { get; set; }
+
         public IPagedList<tb_Supplier> SearchResults { get; set; }
         public string SearchButton { get; set; }
         public int? Page { get; set; }
