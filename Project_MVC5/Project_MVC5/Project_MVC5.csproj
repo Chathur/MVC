@@ -196,6 +196,7 @@
     <Compile Include="Controllers\HR_EmployeeController.cs" />
     <Compile Include="Controllers\HR_SupplierController.cs" />
     <Compile Include="Controllers\MvcSearchController.cs" />
+    <Compile Include="Controllers\Purchase_ReturnsController.cs" />
     <Compile Include="Controllers\Report_SalesDailyController.cs" />
     <Compile Include="Controllers\Report_SalesOrderController.cs" />
     <Compile Include="Controllers\Report_StockController.cs" />
@@ -564,6 +565,7 @@
     <Content Include="Views\Add_Routes\AddRoute.cshtml" />
     <Content Include="Views\Stock_BinCard\SearchItem.cshtml" />
     <Content Include="Views\Sales_Returns\Index.cshtml" />
+    <Content Include="Views\Purchase_Returns\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
