@@ -12,12 +12,12 @@ namespace Project_MVC5.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Purchases
+    public partial class Purchase
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Purchases()
+        public Purchase()
         {
-            this.PurchaseDetails = new HashSet<PurchaseDetails>();
+            this.PurchaseDetails = new HashSet<PurchaseDetail>();
         }
     
         public int PurchaseId { get; set; }
@@ -41,9 +41,9 @@ namespace Project_MVC5.Models
         public string NotesToSupplier { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PurchaseDetails> PurchaseDetails { get; set; }
-        public virtual PurchaseStatus PurchaseStatus { get; set; }
-        public virtual PurchaseTypes PurchaseTypes { get; set; }
+        public virtual ICollection<PurchaseDetail> PurchaseDetails { get; set; }
+        public virtual PurchaseStatu PurchaseStatu { get; set; }
+        public virtual PurchaseType PurchaseType { get; set; }
         public virtual tb_Supplier tb_Supplier { get; set; }
     }
 }

@@ -9,10 +9,9 @@
 
 namespace Project_MVC5.Models
 {
-    using PagedList;
     using System;
     using System.Collections.Generic;
-
+    
     public partial class ITEMS
     {
         public int StockId { get; set; }

@@ -12,14 +12,10 @@ namespace Project_MVC5.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class PaymentAccountHumanTypes
+    public partial class PaymentsSagePayCardType
     {
-        public int AccountHumanTypeId { get; set; }
-        public string HumanDescription { get; set; }
-        public Nullable<int> AccountantAccountType { get; set; }
-        public Nullable<bool> IsPhysicalAccount { get; set; }
-        public Nullable<bool> ReadOnly { get; set; }
-    
-        public virtual PaymentAccountAccountantTypes PaymentAccountAccountantTypes { get; set; }
+        public int CardTypeId { get; set; }
+        public string CardTypeMnemonic { get; set; }
+        public string CardTypeDescription { get; set; }
     }
 }

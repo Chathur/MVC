@@ -12,10 +12,12 @@ namespace Project_MVC5.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class PaymentTransfers
+    public partial class ProductsAllocatedToOrder
     {
-        public int PaymentTransfersId { get; set; }
-        public string Description { get; set; }
-        public System.DateTime TransferDate { get; set; }
+        public int Sku { get; set; }
+        public int OrderDetailsId { get; set; }
+        public int QtyAllocated { get; set; }
+    
+        public virtual ITEMSS ITEMSS { get; set; }
     }
 }

@@ -12,12 +12,12 @@ namespace Project_MVC5.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class sales
+    public partial class sysdiagram
     {
-        public int sales_id { get; set; }
-        public int sales_order_id { get; set; }
-        public System.DateTime Delivered_Date { get; set; }
-        public decimal Total_Cost { get; set; }
-        public Nullable<bool> Paid { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

@@ -18,7 +18,7 @@ namespace Project_MVC5.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tb_Supplier()
         {
-            this.Purchases = new HashSet<Purchases>();
+            this.Purchases = new HashSet<Purchase>();
         }
     
         public int ID_Supplier { get; set; }

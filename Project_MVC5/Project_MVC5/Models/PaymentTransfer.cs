@@ -12,12 +12,10 @@ namespace Project_MVC5.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class sysdiagrams
+    public partial class PaymentTransfer
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public int PaymentTransfersId { get; set; }
+        public string Description { get; set; }
+        public System.DateTime TransferDate { get; set; }
     }
 }

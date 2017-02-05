@@ -12,18 +12,18 @@ namespace Project_MVC5.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class PaymentMethodTypes
+    public partial class PaymentAccountAccountantType
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PaymentMethodTypes()
+        public PaymentAccountAccountantType()
         {
-            this.PaymentMethods = new HashSet<PaymentMethods>();
+            this.PaymentAccountHumanTypes = new HashSet<PaymentAccountHumanType>();
         }
     
-        public int PaymentMethodTypeId { get; set; }
-        public string Description { get; set; }
+        public int AccountAccountantTypeId { get; set; }
+        public string AccountantDescription { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PaymentMethods> PaymentMethods { get; set; }
+        public virtual ICollection<PaymentAccountHumanType> PaymentAccountHumanTypes { get; set; }
     }
 }

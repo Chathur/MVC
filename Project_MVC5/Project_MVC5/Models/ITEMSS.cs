@@ -17,8 +17,8 @@ namespace Project_MVC5.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ITEMSS()
         {
-            this.ProductInfo = new HashSet<ProductInfo>();
-            this.ProductsAllocatedToOrders = new HashSet<ProductsAllocatedToOrders>();
+            this.ProductInfoes = new HashSet<ProductInfo>();
+            this.ProductsAllocatedToOrders = new HashSet<ProductsAllocatedToOrder>();
         }
     
         public int StockId { get; set; }
@@ -38,8 +38,8 @@ namespace Project_MVC5.Models
         public Nullable<double> Add_Quantity { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductInfo> ProductInfo { get; set; }
+        public virtual ICollection<ProductInfo> ProductInfoes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductsAllocatedToOrders> ProductsAllocatedToOrders { get; set; }
+        public virtual ICollection<ProductsAllocatedToOrder> ProductsAllocatedToOrders { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace Project_MVC5.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class PurchaseDetails
+    public partial class PurchaseDetail
     {
         public int PurchaseDetailsId { get; set; }
         public Nullable<int> PurchaseId { get; set; }
@@ -26,6 +26,6 @@ namespace Project_MVC5.Models
         public Nullable<int> VatId { get; set; }
         public Nullable<bool> Received { get; set; }
     
-        public virtual Purchases Purchases { get; set; }
+        public virtual Purchase Purchase { get; set; }
     }
 }

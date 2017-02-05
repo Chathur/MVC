@@ -12,7 +12,7 @@ namespace Project_MVC5.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class OrderPayments
+    public partial class OrderPayment
     {
         public int OrderPaymentsId { get; set; }
         public Nullable<int> OrderNo { get; set; }

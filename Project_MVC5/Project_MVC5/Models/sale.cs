@@ -12,12 +12,12 @@ namespace Project_MVC5.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class TaxRates
+    public partial class sale
     {
-        public int TaxId { get; set; }
-        public string TaxCode { get; set; }
-        public double TaxRate { get; set; }
-        public string TaxDescription { get; set; }
-        public bool IsDefaultTaxCode { get; set; }
+        public int sales_id { get; set; }
+        public int sales_order_id { get; set; }
+        public System.DateTime Delivered_Date { get; set; }
+        public decimal Total_Cost { get; set; }
+        public Nullable<bool> Paid { get; set; }
     }
 }

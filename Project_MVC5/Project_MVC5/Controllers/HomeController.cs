@@ -13,17 +13,31 @@ namespace Project_MVC5.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Sales()
         {
-            ViewBag.Message = "Your application description page.";
+            return View();
+        }
+        
 
+        public ActionResult Purchase()
+        {
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Payments()
         {
-            ViewBag.Message = "Your contact page.";
-
+            return View();
+        }
+        public ActionResult Reports()
+        {
+            return View();
+        }
+        public ActionResult HumanResource()
+        {
+            return View();
+        }
+        public ActionResult Stock()
+        {
             return View();
         }
     }

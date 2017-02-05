@@ -12,7 +12,7 @@ namespace Project_MVC5.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ORDERS
+    public partial class ORDER
     {
         public int ORDER_NO { get; set; }
         public int CUSTOMER { get; set; }

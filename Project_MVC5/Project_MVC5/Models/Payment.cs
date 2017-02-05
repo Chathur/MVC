@@ -12,7 +12,7 @@ namespace Project_MVC5.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Payments
+    public partial class Payment
     {
         public int PaymentId { get; set; }
         public System.DateTime PaymentDate { get; set; }
@@ -28,8 +28,8 @@ namespace Project_MVC5.Models
         public Nullable<decimal> MoneyIn { get; set; }
         public Nullable<decimal> MoneyOut { get; set; }
     
-        public virtual PaymentAccounts PaymentAccounts { get; set; }
-        public virtual PaymentMethods PaymentMethods { get; set; }
-        public virtual PaymentTypes PaymentTypes { get; set; }
+        public virtual PaymentAccount PaymentAccount { get; set; }
+        public virtual PaymentMethod PaymentMethod { get; set; }
+        public virtual PaymentType PaymentType { get; set; }
     }
 }
