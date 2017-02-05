@@ -4,51 +4,53 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="00066349e66b482491c8359862c65400" Name="Diagram1" ZoomLevel="34">
+      <Diagram DiagramId="0f9926506d5d4fcf8b5e9fff2aaea306" Name="Diagram1">
         <EntityTypeShape EntityType="WICKRAMA_STORESModel.ITEM_TYPES_LOOKUP" Width="1.5" PointX="10.75" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="WICKRAMA_STORESModel.ITEMS" Width="1.5" PointX="12.75" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="WICKRAMA_STORESModel.ITEMSS" Width="1.5" PointX="9.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="WICKRAMA_STORESModel.ItemTypes" Width="1.5" PointX="14.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="WICKRAMA_STORESModel.Job" Width="1.5" PointX="14.75" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="WICKRAMA_STORESModel.MANUFACTURER_LOOKUP" Width="1.5" PointX="16.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="WICKRAMA_STORESModel.ORDER_STATUS_LOOKUP" Width="1.5" PointX="17" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="WICKRAMA_STORESModel.OrderElementsStatusLookup" Width="1.5" PointX="16.75" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="WICKRAMA_STORESModel.OrderPayments" Width="1.5" PointX="0.75" PointY="17.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="WICKRAMA_STORESModel.ORDERS" Width="1.5" PointX="2.75" PointY="17.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="WICKRAMA_STORESModel.OrderStatusTypeLookup" Width="1.5" PointX="14.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WICKRAMA_STORESModel.ITEMS" Width="1.5" PointX="12.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WICKRAMA_STORESModel.ITEMSS" Width="1.5" PointX="12.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WICKRAMA_STORESModel.ItemTypes" Width="1.5" PointX="9.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WICKRAMA_STORESModel.Job" Width="1.5" PointX="14.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WICKRAMA_STORESModel.MANUFACTURER_LOOKUP" Width="1.5" PointX="16.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WICKRAMA_STORESModel.ORDER_STATUS_LOOKUP" Width="1.5" PointX="3" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WICKRAMA_STORESModel.OrderElementsStatusLookup" Width="1.5" PointX="0.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WICKRAMA_STORESModel.OrderPayments" Width="1.5" PointX="2.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WICKRAMA_STORESModel.ORDERS" Width="1.5" PointX="17.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WICKRAMA_STORESModel.OrderStatusTypeLookup" Width="1.5" PointX="0.75" PointY="14.25" IsExpanded="true" />
         <EntityTypeShape EntityType="WICKRAMA_STORESModel.OrderTypes" Width="1.5" PointX="4.75" PointY="17.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="WICKRAMA_STORESModel.PaymentAccountAccountantTypes" Width="1.5" PointX="0.75" PointY="14.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="WICKRAMA_STORESModel.PaymentAccountHumanTypes" Width="1.5" PointX="3" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WICKRAMA_STORESModel.PaymentAccountAccountantTypes" Width="1.5" PointX="12.75" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WICKRAMA_STORESModel.PaymentAccountHumanTypes" Width="1.5" PointX="15" PointY="11.875" IsExpanded="true" />
         <EntityTypeShape EntityType="WICKRAMA_STORESModel.PaymentAccounts" Width="1.5" PointX="8" PointY="12.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="WICKRAMA_STORESModel.PaymentCardTransactions" Width="1.5" PointX="17.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WICKRAMA_STORESModel.PaymentCardTransactions" Width="1.5" PointX="17.75" PointY="12.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WICKRAMA_STORESModel.PaymentMethods" Width="1.5" PointX="8" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WICKRAMA_STORESModel.PaymentMethodTypes" Width="1.5" PointX="5.75" PointY="9.25" IsExpanded="true" />
         <EntityTypeShape EntityType="WICKRAMA_STORESModel.Payments" Width="1.5" PointX="10.25" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="WICKRAMA_STORESModel.PaymentsSagePayCardTypes" Width="1.5" PointX="17.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WICKRAMA_STORESModel.PaymentsSagePayCardTypes" Width="1.5" PointX="6.75" PointY="18.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WICKRAMA_STORESModel.PaymentTerms" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="WICKRAMA_STORESModel.PaymentTransfers" Width="1.5" PointX="14.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WICKRAMA_STORESModel.PaymentTransfers" Width="1.5" PointX="8.75" PointY="18.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WICKRAMA_STORESModel.PaymentTypes" Width="1.5" PointX="8" PointY="15.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="WICKRAMA_STORESModel.Permissions" Width="1.5" PointX="12.75" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="WICKRAMA_STORESModel.ProductInfo" Width="1.5" PointX="12" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="WICKRAMA_STORESModel.ProductLocations" Width="1.5" PointX="16.75" PointY="17.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="WICKRAMA_STORESModel.ProductsAllocatedToOrders" Width="1.5" PointX="12" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WICKRAMA_STORESModel.Permissions" Width="1.5" PointX="9.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WICKRAMA_STORESModel.ProductInfo" Width="1.5" PointX="15" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="WICKRAMA_STORESModel.ProductLocations" Width="1.5" PointX="14.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WICKRAMA_STORESModel.ProductsAllocatedToOrders" Width="1.5" PointX="15" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WICKRAMA_STORESModel.PurchaseDetails" Width="1.5" PointX="7.5" PointY="2.125" IsExpanded="true" />
         <EntityTypeShape EntityType="WICKRAMA_STORESModel.Purchases" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="WICKRAMA_STORESModel.PurchaseStatus" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WICKRAMA_STORESModel.PurchaseTypes" Width="1.5" PointX="3" PointY="11.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="WICKRAMA_STORESModel.Route" Width="1.5" PointX="12.75" PointY="11.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="WICKRAMA_STORESModel.sales" Width="1.5" PointX="18.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="WICKRAMA_STORESModel.sales_order_detail" Width="1.5" PointX="6.75" PointY="18.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="WICKRAMA_STORESModel.SUB_ITEM_TYPES_LOOKUP" Width="1.5" PointX="8.75" PointY="18.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="WICKRAMA_STORESModel.sysdiagrams" Width="1.5" PointX="18.75" PointY="13.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="WICKRAMA_STORESModel.TaxRates" Width="1.5" PointX="18.75" PointY="16.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="WICKRAMA_STORESModel.tb_Cart" Width="1.5" PointX="19.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="WICKRAMA_STORESModel.tb_Customer" Width="1.5" PointX="15" PointY="11" IsExpanded="true" />
-        <EntityTypeShape EntityType="WICKRAMA_STORESModel.tb_Employee" Width="1.5" PointX="19.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="WICKRAMA_STORESModel.tb_Sales" Width="1.5" PointX="10.75" PointY="19.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="WICKRAMA_STORESModel.tb_SalesOrder" Width="1.5" PointX="18.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WICKRAMA_STORESModel.Route" Width="1.5" PointX="16.5" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WICKRAMA_STORESModel.sales" Width="1.5" PointX="18.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WICKRAMA_STORESModel.sales_order_detail" Width="1.5" PointX="16.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WICKRAMA_STORESModel.SUB_ITEM_TYPES_LOOKUP" Width="1.5" PointX="18.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WICKRAMA_STORESModel.sysdiagrams" Width="1.5" PointX="19.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WICKRAMA_STORESModel.TaxRates" Width="1.5" PointX="19.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WICKRAMA_STORESModel.tb_Cart" Width="1.5" PointX="19.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WICKRAMA_STORESModel.tb_Customer" Width="1.5" PointX="18.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WICKRAMA_STORESModel.tb_Employee" Width="1.5" PointX="14.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="WICKRAMA_STORESModel.tb_PurchaseReturns" Width="1.5" PointX="20.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WICKRAMA_STORESModel.tb_Sales" Width="1.5" PointX="10.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WICKRAMA_STORESModel.tb_SalesOrder" Width="1.5" PointX="20.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WICKRAMA_STORESModel.tb_SalesReturns" Width="1.5" PointX="20.75" PointY="20.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WICKRAMA_STORESModel.tb_Supplier" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="WICKRAMA_STORESModel.Users" Width="1.5" PointX="15" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WICKRAMA_STORESModel.Users" Width="1.5" PointX="12" PointY="1.5" IsExpanded="true" />
         <AssociationConnector Association="WICKRAMA_STORESModel.FK_ProductInfo_ITEMS" ManuallyRouted="false" />
         <AssociationConnector Association="WICKRAMA_STORESModel.FK_ProductsAllocatedToOrders_ITEMS" ManuallyRouted="false" />
         <AssociationConnector Association="WICKRAMA_STORESModel.FK_ORDER_STATUS_LOOKUP_OrderStatusTypeLookup" ManuallyRouted="false" />
@@ -62,9 +64,10 @@
         <AssociationConnector Association="WICKRAMA_STORESModel.FK_Purchases_PurchaseStatus" ManuallyRouted="false" />
         <AssociationConnector Association="WICKRAMA_STORESModel.FK_Purchases_PurchaseTypes" ManuallyRouted="false" />
         <AssociationConnector Association="WICKRAMA_STORESModel.FK_Purchases_VENDORS" ManuallyRouted="false" />
+        <AssociationConnector Association="WICKRAMA_STORESModel.FK_Route_tb_Employee" ManuallyRouted="false" />
         <AssociationConnector Association="WICKRAMA_STORESModel.FK_tb_Customer_tb_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="WICKRAMA_STORESModel.FK_tb_Employee_Users" ManuallyRouted="false" />
         <AssociationConnector Association="WICKRAMA_STORESModel.UsersPermissions" ManuallyRouted="false" />
-        <AssociationConnector Association="WICKRAMA_STORESModel.FK_Route_tb_Employee" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="WICKRAMA_STORESModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="WICKRAMA_STORESModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ITEM_TYPES_LOOKUP">
           <Key>
             <PropertyRef Name="TYPE_ID" />
@@ -459,8 +459,17 @@
           <Property Name="Job_tile" Type="nchar" MaxLength="50" Nullable="false" />
           <Property Name="Salary" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="Joining_Date" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="user_id" Type="nchar" MaxLength="10" />
+          <Property Name="user_id" Type="int" />
           <Property Name="Still_working" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_PurchaseReturns">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Bill_No" Type="int" Nullable="false" />
+          <Property Name="Name_Item" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="tb_Sales">
           <Key>
@@ -499,6 +508,15 @@
           <Property Name="Name_Product" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Total" Type="float" StoreGeneratedPattern="Computed" Nullable="false" />
           <Property Name="Route" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tb_SalesReturns">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Bill_No" Type="int" Nullable="false" />
+          <Property Name="Name_Item" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="tb_Supplier">
           <Key>
@@ -712,6 +730,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_tb_Employee_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="tb_Employee" Type="Self.tb_Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tb_Employee">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_UsersPermissions_Permissions">
           <End Role="Permissions" Type="Self.Permissions" Multiplicity="1" />
           <End Role="UsersPermissions" Type="Self.UsersPermissions" Multiplicity="*" />
@@ -789,8 +819,10 @@
           <EntitySet Name="tb_Cart" EntityType="Self.tb_Cart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_Customer" EntityType="Self.tb_Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_Employee" EntityType="Self.tb_Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_PurchaseReturns" EntityType="Self.tb_PurchaseReturns" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_Sales" EntityType="Self.tb_Sales" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_SalesOrder" EntityType="Self.tb_SalesOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_SalesReturns" EntityType="Self.tb_SalesReturns" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_Supplier" EntityType="Self.tb_Supplier" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UsersPermissions" EntityType="Self.UsersPermissions" Schema="dbo" store:Type="Tables" />
@@ -850,6 +882,10 @@
             <End Role="Route" EntitySet="Route" />
             <End Role="tb_Customer" EntitySet="tb_Customer" />
           </AssociationSet>
+          <AssociationSet Name="FK_tb_Employee_Users" Association="Self.FK_tb_Employee_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="tb_Employee" EntitySet="tb_Employee" />
+          </AssociationSet>
           <AssociationSet Name="FK_UsersPermissions_Permissions" Association="Self.FK_UsersPermissions_Permissions">
             <End Role="Permissions" EntitySet="Permissions" />
             <End Role="UsersPermissions" EntitySet="UsersPermissions" />
@@ -863,7 +899,8 @@
             <End Role="tb_Supplier" EntitySet="tb_Supplier" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="WICKRAMA_STORESModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1243,12 +1280,12 @@
             <PropertyRef Name="Route_id" />
           </Key>
           <Property Name="Route_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Route_desc" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="tb_Customer" Relationship="Self.FK_tb_Customer_tb_Customer" FromRole="Route" ToRole="tb_Customer" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Emoloyee" Type="Int32" />
-          <NavigationProperty Name="tb_Employee" Relationship="WICKRAMA_STORESModel.FK_Route_tb_Employee" FromRole="Route" ToRole="tb_Employee" />
+          <Property Name="Route_desc" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="tb_Employee" Relationship="Self.FK_Route_tb_Employee" FromRole="Route" ToRole="tb_Employee" />
+          <NavigationProperty Name="tb_Customer" Relationship="Self.FK_tb_Customer_tb_Customer" FromRole="Route" ToRole="tb_Customer" />
         </EntityType>
         <EntityType Name="sales">
           <Key>
@@ -1349,9 +1386,19 @@
           <Property Name="Job_tile" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Salary" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Joining_Date" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="user_id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="user_id" Type="Int32" />
           <Property Name="Still_working" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Route" Relationship="WICKRAMA_STORESModel.FK_Route_tb_Employee" FromRole="tb_Employee" ToRole="Route" />
+          <NavigationProperty Name="Route" Relationship="Self.FK_Route_tb_Employee" FromRole="tb_Employee" ToRole="Route" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_tb_Employee_Users" FromRole="tb_Employee" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="tb_PurchaseReturns">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Bill_No" Type="Int32" Nullable="false" />
+          <Property Name="Name_Item" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="tb_Sales">
           <Key>
@@ -1391,6 +1438,15 @@
           <Property Name="Total" Type="Double" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="Route" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="tb_SalesReturns">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Bill_No" Type="Int32" Nullable="false" />
+          <Property Name="Name_Item" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+        </EntityType>
         <EntityType Name="tb_Supplier">
           <Key>
             <PropertyRef Name="ID_Supplier" />
@@ -1428,6 +1484,7 @@
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Active" Type="Boolean" />
           <Property Name="Employee_id" Type="Int32" />
+          <NavigationProperty Name="tb_Employee" Relationship="Self.FK_tb_Employee_Users" FromRole="Users" ToRole="tb_Employee" />
           <NavigationProperty Name="Permissions" Relationship="Self.UsersPermissions" FromRole="Users" ToRole="Permissions" />
         </EntityType>
         <Association Name="FK_ProductInfo_ITEMS">
@@ -1586,6 +1643,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Route_tb_Employee">
+          <End Role="tb_Employee" Type="Self.tb_Employee" Multiplicity="0..1" />
+          <End Role="Route" Type="Self.Route" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Employee">
+              <PropertyRef Name="ID_Employee" />
+            </Principal>
+            <Dependent Role="Route">
+              <PropertyRef Name="Emoloyee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tb_Customer_tb_Customer">
           <End Role="Route" Type="Self.Route" Multiplicity="1" />
           <End Role="tb_Customer" Type="Self.tb_Customer" Multiplicity="*" />
@@ -1595,6 +1664,18 @@
             </Principal>
             <Dependent Role="tb_Customer">
               <PropertyRef Name="Route_Customer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_Employee_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="tb_Employee" Type="Self.tb_Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tb_Employee">
+              <PropertyRef Name="user_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1643,8 +1724,10 @@
           <EntitySet Name="tb_Cart" EntityType="Self.tb_Cart" />
           <EntitySet Name="tb_Customer" EntityType="Self.tb_Customer" />
           <EntitySet Name="tb_Employee" EntityType="Self.tb_Employee" />
+          <EntitySet Name="tb_PurchaseReturns" EntityType="Self.tb_PurchaseReturns" />
           <EntitySet Name="tb_Sales" EntityType="Self.tb_Sales" />
           <EntitySet Name="tb_SalesOrder" EntityType="Self.tb_SalesOrder" />
+          <EntitySet Name="tb_SalesReturns" EntityType="Self.tb_SalesReturns" />
           <EntitySet Name="tb_Supplier" EntityType="Self.tb_Supplier" />
           <EntitySet Name="Users" EntityType="Self.Users" />
           <AssociationSet Name="FK_ProductInfo_ITEMS" Association="Self.FK_ProductInfo_ITEMS">
@@ -1699,31 +1782,23 @@
             <End Role="tb_Supplier" EntitySet="tb_Supplier" />
             <End Role="Purchases" EntitySet="Purchases" />
           </AssociationSet>
+          <AssociationSet Name="FK_Route_tb_Employee" Association="Self.FK_Route_tb_Employee">
+            <End Role="tb_Employee" EntitySet="tb_Employee" />
+            <End Role="Route" EntitySet="Route" />
+          </AssociationSet>
           <AssociationSet Name="FK_tb_Customer_tb_Customer" Association="Self.FK_tb_Customer_tb_Customer">
             <End Role="Route" EntitySet="Route" />
             <End Role="tb_Customer" EntitySet="tb_Customer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_Employee_Users" Association="Self.FK_tb_Employee_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="tb_Employee" EntitySet="tb_Employee" />
           </AssociationSet>
           <AssociationSet Name="UsersPermissions" Association="Self.UsersPermissions">
             <End Role="Permissions" EntitySet="Permissions" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
-          <AssociationSet Name="FK_Route_tb_Employee" Association="WICKRAMA_STORESModel.FK_Route_tb_Employee">
-            <End Role="tb_Employee" EntitySet="tb_Employee" />
-            <End Role="Route" EntitySet="Route" />
-          </AssociationSet>
         </EntityContainer>
-        <Association Name="FK_Route_tb_Employee">
-          <End Type="WICKRAMA_STORESModel.tb_Employee" Role="tb_Employee" Multiplicity="0..1" />
-          <End Type="WICKRAMA_STORESModel.Route" Role="Route" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tb_Employee">
-              <PropertyRef Name="ID_Employee" />
-            </Principal>
-            <Dependent Role="Route">
-              <PropertyRef Name="Emoloyee" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1747,8 +1822,6 @@
           <EntitySetMapping Name="ITEMS">
             <EntityTypeMapping TypeName="WICKRAMA_STORESModel.ITEMS">
               <MappingFragment StoreEntitySet="ITEMS">
-                <ScalarProperty Name="Free_Items" ColumnName="Free_Items" />
-                <ScalarProperty Name="Discount" ColumnName="Discount" />
                 <ScalarProperty Name="StockId" ColumnName="StockId" />
                 <ScalarProperty Name="StockCode" ColumnName="StockCode" />
                 <ScalarProperty Name="Name_Item" ColumnName="Name_Item" />
@@ -1762,6 +1835,8 @@
                 <ScalarProperty Name="Retail_Margin" ColumnName="Retail_Margin" />
                 <ScalarProperty Name="Trade_Margin" ColumnName="Trade_Margin" />
                 <ScalarProperty Name="Add_Quantity" ColumnName="Add_Quantity" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Free_Items" ColumnName="Free_Items" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2109,10 +2184,10 @@
           <EntitySetMapping Name="Route">
             <EntityTypeMapping TypeName="WICKRAMA_STORESModel.Route">
               <MappingFragment StoreEntitySet="Route">
-                <ScalarProperty Name="Emoloyee" ColumnName="Emoloyee" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Route_id" ColumnName="Route_id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Emoloyee" ColumnName="Emoloyee" />
                 <ScalarProperty Name="Route_desc" ColumnName="Route_desc" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2226,6 +2301,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="tb_PurchaseReturns">
+            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.tb_PurchaseReturns">
+              <MappingFragment StoreEntitySet="tb_PurchaseReturns">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Bill_No" ColumnName="Bill_No" />
+                <ScalarProperty Name="Name_Item" ColumnName="Name_Item" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tb_Sales">
             <EntityTypeMapping TypeName="WICKRAMA_STORESModel.tb_Sales">
               <MappingFragment StoreEntitySet="tb_Sales">
@@ -2263,6 +2348,16 @@
                 <ScalarProperty Name="Name_Product" ColumnName="Name_Product" />
                 <ScalarProperty Name="Total" ColumnName="Total" />
                 <ScalarProperty Name="Route" ColumnName="Route" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_SalesReturns">
+            <EntityTypeMapping TypeName="WICKRAMA_STORESModel.tb_SalesReturns">
+              <MappingFragment StoreEntitySet="tb_SalesReturns">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Bill_No" ColumnName="Bill_No" />
+                <ScalarProperty Name="Name_Item" ColumnName="Name_Item" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

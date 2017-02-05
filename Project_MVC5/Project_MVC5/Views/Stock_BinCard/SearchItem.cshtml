@@ -44,13 +44,13 @@
                 <div class="form-horizontal form-control-static">
 
                     <div class="form-group-sm form-inline form-control-static">
-                        <label class="control-label col-md-push-12">Item Name</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="text" class="form-control col-md-push-12 bg-gray-light" name="Name_Item" id="Name_Item" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </div>
+                        <label class="control-label col-md-1">Item Name</label>
+                        @Html.DropDownList("Name_Product", (ViewBag.products as SelectList), "-- Please Select an Item  --", new { style = "width:250px", @class = "form-control col-md-12 " })
+                     </div>
 
                     <div class="form-group-sm form-inline form-control-static">
-                        <label class="control-label col-md-push-12">Item Code</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="text" class="form-control col-md-push-12 bg-gray-light" name="StockCode" id="StockCode"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label class="control-label col-md-push-12">Item Code</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;<input type="text" class="form-control col-md-push-12 " name="StockCode" id="StockCode"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </div>
                 
                 </div>
@@ -163,8 +163,3 @@
         });
 
 </script>
-
-
-
-
-

@@ -14,6 +14,8 @@ namespace Project_MVC5.Controllers
         WICKRAMA_STORESEntities db = new WICKRAMA_STORESEntities();
         public ActionResult SearchItem(ITEMS model)
         {
+            ViewBag.products = new SelectList(db.ITEMS, "Name_Item", "Name_Item");
+
             if (!string.IsNullOrEmpty(model.SearchButton) || model.Page.HasValue)
             {
                 int RecordsPerPage = 500;

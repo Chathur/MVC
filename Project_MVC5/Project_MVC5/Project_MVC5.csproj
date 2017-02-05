@@ -206,6 +206,7 @@
     <Compile Include="Controllers\PurchaseGRNController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\Sales_ReturnsController.cs" />
     <Compile Include="Controllers\Sales_SalesController.cs" />
     <Compile Include="Controllers\Sales_SalesListController.cs" />
     <Compile Include="Controllers\Sales_SalesOrderController.cs" />
@@ -360,10 +361,16 @@
     <Compile Include="Models\tb_Employee.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tb_PurchaseReturns.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tb_Sales.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tb_SalesOrder.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tb_SalesReturns.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tb_Supplier.cs">
@@ -556,9 +563,11 @@
     <Content Include="Views\Add_Routes\Index.cshtml" />
     <Content Include="Views\Add_Routes\AddRoute.cshtml" />
     <Content Include="Views\Stock_BinCard\SearchItem.cshtml" />
+    <Content Include="Views\Sales_Returns\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Sales_Return\" />
     <Folder Include="Views\TestMessage\" />
   </ItemGroup>
   <ItemGroup>
