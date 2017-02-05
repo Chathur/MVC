@@ -18,7 +18,7 @@ namespace Project_MVC5.Models
         public User()
         {
             this.tb_Employee = new HashSet<tb_Employee>();
-            this.Permissions = new HashSet<Permission>();
+            this.Permissions = new HashSet<Permissions>();
         }
     
         public int UserId { get; set; }
@@ -30,6 +30,6 @@ namespace Project_MVC5.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tb_Employee> tb_Employee { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Permission> Permissions { get; set; }
+        public virtual ICollection<Permissions> Permissions { get; set; }
     }
 }

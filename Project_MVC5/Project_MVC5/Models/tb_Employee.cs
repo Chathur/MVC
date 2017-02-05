@@ -15,7 +15,13 @@ namespace Project_MVC5.Models
 
     public partial class tb_Employee
     {
-        public string ID_Employee { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tb_Employee()
+        {
+            this.Route = new HashSet<Route>();
+        }
+    
+        public int ID_Employee { get; set; }
         public string Name_Employee { get; set; }
         public string Address_Employee { get; set; }
         public string Tel_Employee { get; set; }
@@ -23,12 +29,15 @@ namespace Project_MVC5.Models
         public string Job_tile { get; set; }
         public string Salary { get; set; }
         public string Joining_Date { get; set; }
-        public int UserId { get; set; }
+        public Nullable<int> user_id { get; set; }
         public bool Still_working { get; set; }
-    
-        public virtual User User { get; set; }
+
         public IPagedList<tb_Employee> SearchResults { get; set; }
         public string SearchButton { get; set; }
         public int? Page { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Route> Route { get; set; }
+        public virtual Users Users { get; set; }
     }
 }

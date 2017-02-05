@@ -32,5 +32,8 @@ namespace Project_MVC5.Models
         public IPagedList<tb_SalesOrder> SearchResults { get; set; }
         public string SearchButton { get; set; }
         public int? Page { get; set; }
+
+        public DateTime? End_Date { get; set; }
+        public DateTime? Start_Date { get; set; }
     }
 }
