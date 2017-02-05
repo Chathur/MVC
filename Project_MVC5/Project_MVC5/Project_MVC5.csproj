@@ -211,6 +211,7 @@
     <Compile Include="Controllers\Sales_SalesOrderController.cs" />
     <Compile Include="Controllers\SendMailController.cs" />
     <Compile Include="Controllers\Stock_AddItemController.cs" />
+    <Compile Include="Controllers\Stock_BinCardController.cs" />
     <Compile Include="Controllers\Stock_SearchItemController.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
     <Compile Include="Controllers\tb_SalesController.cs" />
@@ -554,6 +555,7 @@
     <Content Include="Views\Report_TransactionDetails\Index.cshtml" />
     <Content Include="Views\Add_Routes\Index.cshtml" />
     <Content Include="Views\Add_Routes\AddRoute.cshtml" />
+    <Content Include="Views\Stock_BinCard\SearchItem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

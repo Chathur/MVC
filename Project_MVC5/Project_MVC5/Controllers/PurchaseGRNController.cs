@@ -20,6 +20,8 @@ namespace Project_MVC5.Controllers
         }
         public ActionResult ViewPurchaseGRN()
         {
+            ITEMS order = new ITEMS();
+
             ViewBag.products = new SelectList(db.ITEMS, "Name_Item", "Name_Item");
             ViewBag.suppliers = new SelectList(db.tb_Supplier, "Name_Supplier", "Name_Supplier");
             return View(db.ITEMS.Where(p=>p.Name_Item==name).OrderByDescending(p => p.StockId).ToList());
